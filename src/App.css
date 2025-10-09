@@ -9,7 +9,7 @@
 }
 
 .buttonDef {
-  @apply rounded-xl bg-blue-500 text-white p-2 text-sm
+  @apply rounded-xl  text-black border-2 border-black p-2 text-sm
 }
 
 /*#root {
