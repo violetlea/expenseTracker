@@ -10,14 +10,16 @@ function App() {
       <header class='p-1 lg:p-8 md:p-4 sm:p-2 text-center'>
         <h1 class='text-sm lg:text-3xl md:text-base '>Expense Tracker</h1> 
       </header>
-      <section class='bg-amber-500 flex flex-row-reverse w-sm xl:w-3xl lg:w-lg md:w-md sm:w-xs'>
+      <div class='flex flex-row-reverse w-sm xl:w-3xl lg:w-lg md:w-md sm:w-xs'>
         <div class='ml-2 mr-2'>
           <ButtonDef text='Add Category' />
         </div>
         <div>
           <ButtonDef text='Clear All' />
         </div>
-      </section>
+
+      </div>
+      
     </>
   )
 }
