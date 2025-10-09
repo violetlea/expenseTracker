@@ -6,7 +6,7 @@ export default function TextInput (props) {
         type="text"
         label={label} 
         onChange={handleOnChange}
-        class="border-2 border-gray-400 m-2"
+        class="border-1 border-gray-400 w-auto max-w-9/10 rounded-l p-0.5 m-1"
         >
         
         </input>

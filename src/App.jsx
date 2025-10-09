@@ -38,18 +38,20 @@ function App() {
       </div>
 
     </header>
-    <section className='grid grid-cols-1 gap-3'>
-      <div className='grid grid-cols-2 gap-3 border-2 border-black p-2'>
-        <div className='border-2 border-black p-2'>
-          1
+    <section className='grid grid-cols-1'>
+      <div className='grid grid-cols-1 gap-3 p-2 justify-items-end'>
+        <div className='ml-2 mr-2 md:ml-8 md:mr-8'>
+          <div>
+            <ButtonDef text='Add Category'/>
+          </div>
         </div>
-        <div className='border-2 border-black p-2'>
-          2
+       
+      </div>
+   
+        <div className='bg-amber-200 p-2 md:p-4 justify-items-center border-2 border-black m-2 md:m-10 rounded-xl'>
+           <AddCategory />
         </div>
-      </div>
-      <div className='border-2 border-black p-2'>
-        01
-      </div>
+      
 
     </section>
 
