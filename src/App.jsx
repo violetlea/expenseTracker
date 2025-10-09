@@ -1,23 +1,21 @@
-import { useState } from 'react'
+import { useState } from "react";
 import "./App.css";
 import ButtonDef from "./components/Button";
 import AddCategory from "./containers/addCategoryContainer";
 function App() {
 	const [visible, setVisible] = useState(false);
 
-  const handleSubmitCategory = () => {
-
-    if(visible) {
-      setVisible(false)
-    } else {
-      setVisible(true)
-    }
-    
-  }
+	const handleSubmitCategory = () => {
+		if (visible) {
+			setVisible(false);
+		} else {
+			setVisible(true);
+		}
+	};
 
 	return (
 		<>
-    {/* <div >
+			{/* <div >
       <header class="p-1 lg:p-8 md:p-4 sm:p-2 text-center">
 				<h1 class="text-sm lg:text-3xl md:text-base ">Expense Tracker</h1>
 			</header>
@@ -32,31 +30,30 @@ function App() {
       {visible && <AddCategory />}
 
     </div> */}
-    <header className='grid grid-cols-1'>
-      <div className='p-6 border-2 m-4 border-black text-center text-2xl'>
-        <h1>Expense Tracker</h1>
-      </div>
+			<header className="grid grid-cols-1">
+				<div className="p-6 border-2 m-4 border-black text-center text-2xl">
+					<h1>Expense Tracker</h1>
+				</div>
+			</header>
+			<section className="grid grid-cols-1">
+				<div className="grid grid-cols-1 gap-3 p-2 justify-items-end">
+					<div className="ml-2 mr-2 md:ml-8 md:mr-8">
+						<div>
+              <ButtonDef text='Clear All' />
+							<ButtonDef text={visible ? `Close Category` : `Add Category`} handleAction={handleSubmitCategory} />
+						</div>
+					</div>
+				</div>
 
-    </header>
-    <section className='grid grid-cols-1'>
-      <div className='grid grid-cols-1 gap-3 p-2 justify-items-end'>
-        <div className='ml-2 mr-2 md:ml-8 md:mr-8'>
+				{visible && <div className="bg-amber-200 p-2 md:p-4 justify-items-center border-2 border-black m-2 md:m-4 rounded-xl">
+					<AddCategory />
+				</div>}
+        <div className="bg-amber-900 p-2 md:p-4 justify-items-center border-2 border-black m-2 md:m-4 rounded-xl">
           <div>
-            <ButtonDef text='Add Category'/>
+            budgets
           </div>
         </div>
-       
-      </div>
-   
-        <div className='bg-amber-200 p-2 md:p-4 justify-items-center border-2 border-black m-2 md:m-10 rounded-xl'>
-           <AddCategory />
-        </div>
-      
-
-    </section>
-
-			
-      
+			</section>
 		</>
 	);
 }

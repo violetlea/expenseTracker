@@ -28,7 +28,6 @@ export default function AddCategory(props) {
                     <div>
                         <TextInput label="Category" />
 					    <ButtonDef text="Add" handleAction={handleSubmit} />
-
                     </div>
 					
 				</div>
