@@ -1,4 +1,4 @@
-export default function Button (props) {
+export default function ButtonDef (props) {
 
     const {text} = props;
 
