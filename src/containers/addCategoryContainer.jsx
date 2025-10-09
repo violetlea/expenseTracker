@@ -3,6 +3,10 @@ import ButtonDef from "../components/Button";
 
 
 export default function AddCategory(props) {
+
+    const handleSubmit = () => {
+        alert('yes')
+    }
 	return (
 		<>
 			<div class="border-2 border-black rounded-xl w-sm xl:w-3xl lg:w-lg md:w-md sm:w-xs flex flex-row m-1 md:m-4 justify-center ">
@@ -14,7 +18,7 @@ export default function AddCategory(props) {
                         <p>form</p>
                         <p>Category</p>
                         <TextInput label='Category' />
-                        <ButtonDef text='Add'/>
+                        <ButtonDef text='Add' handleAction={handleSubmit}/>
 
                     </div>
 				</div>

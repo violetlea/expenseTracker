@@ -1,24 +1,59 @@
-//import { useState } from 'react'
+import { useState } from 'react'
 import "./App.css";
 import ButtonDef from "./components/Button";
 import AddCategory from "./containers/addCategoryContainer";
 function App() {
-	//const [count, setCount] = useState(0)
+	const [visible, setVisible] = useState(false);
+
+  const handleSubmitCategory = () => {
+
+    if(visible) {
+      setVisible(false)
+    } else {
+      setVisible(true)
+    }
+    
+  }
 
 	return (
 		<>
-			<header class="p-1 lg:p-8 md:p-4 sm:p-2 text-center">
+    {/* <div >
+      <header class="p-1 lg:p-8 md:p-4 sm:p-2 text-center">
 				<h1 class="text-sm lg:text-3xl md:text-base ">Expense Tracker</h1>
 			</header>
 			<div class="flex flex-row-reverse w-sm xl:w-3xl lg:w-lg md:w-md sm:w-xs">
 				<div class="ml-2 mr-2">
-					<ButtonDef text="Add Category" />
+					<ButtonDef text={visible ? `Close Category` : `Add Category`} handleAction={handleSubmitCategory} />
 				</div>
 				<div>
 					<ButtonDef text="Clear All" />
 				</div>
 			</div>
-      <AddCategory />
+      {visible && <AddCategory />}
+
+    </div> */}
+    <header className='grid grid-cols-1'>
+      <div className='p-6 border-2 m-4 border-black text-center text-2xl'>
+        <h1>Expense Tracker</h1>
+      </div>
+
+    </header>
+    <section className='grid grid-cols-1 gap-3'>
+      <div className='grid grid-cols-2 gap-3 border-2 border-black p-2'>
+        <div className='border-2 border-black p-2'>
+          1
+        </div>
+        <div className='border-2 border-black p-2'>
+          2
+        </div>
+      </div>
+      <div className='border-2 border-black p-2'>
+        01
+      </div>
+
+    </section>
+
+			
       
 		</>
 	);
