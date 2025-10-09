@@ -3,6 +3,7 @@ import "./App.css";
 import ButtonDef from "./components/Button";
 import AddCategory from "./containers/addCategoryContainer";
 import AddBudget from "./containers/addBudgetContainer";
+import ManageTransaction from "./containers/transactionsContainer";
 function App() {
 	const [visible, setVisible] = useState(false);
 
@@ -55,19 +56,8 @@ function App() {
 					</div>
 				)}
 				<div className=" grid grid-cols-1 md:grid-cols-2 gap-3 p-2 md:p-4 justify-items-center border-2 border-black m-2 md:m-4 rounded-xl">
-					<div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-						<div className="border-2 border-black w-full">
-							<AddBudget />
-						</div>
-						<div className="border-2 border-black w-full">
-							<AddBudget />
-						</div>
-
-					</div>
-					
-					
-					<div className="border-2 border-black w-full">budgets</div>
-					
+					<AddBudget />
+					<ManageTransaction />
 				</div>
 			</section>
 		</>

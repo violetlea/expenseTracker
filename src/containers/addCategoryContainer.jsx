@@ -26,7 +26,7 @@ export default function AddCategory(props) {
 				<div className="bg-pink-300">
 					<p>Category</p>
                     <div>
-                        <TextInput label="Category" />
+                        <TextInput label="Category" type='text' />
 					    <ButtonDef text="Add" handleAction={handleSubmit} />
                     </div>
 					
