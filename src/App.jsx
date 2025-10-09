@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import ButtonDef from "./components/Button";
 import AddCategory from "./containers/addCategoryContainer";
+import AddBudget from "./containers/addBudgetContainer";
 function App() {
 	const [visible, setVisible] = useState(false);
 
@@ -39,20 +40,35 @@ function App() {
 				<div className="grid grid-cols-1 gap-3 p-2 justify-items-end">
 					<div className="ml-2 mr-2 md:ml-8 md:mr-8">
 						<div>
-              <ButtonDef text='Clear All' />
-							<ButtonDef text={visible ? `Close Category` : `Add Category`} handleAction={handleSubmitCategory} />
+							<ButtonDef text="Clear All" />
+							<ButtonDef
+								text={visible ? `Close Category` : `Add Category`}
+								handleAction={handleSubmitCategory}
+							/>
 						</div>
 					</div>
 				</div>
 
-				{visible && <div className="bg-amber-200 p-2 md:p-4 justify-items-center border-2 border-black m-2 md:m-4 rounded-xl">
-					<AddCategory />
-				</div>}
-        <div className="bg-amber-900 p-2 md:p-4 justify-items-center border-2 border-black m-2 md:m-4 rounded-xl">
-          <div>
-            budgets
-          </div>
-        </div>
+				{visible && (
+					<div className="bg-amber-200 p-2 md:p-4 justify-items-center border-2 border-black m-2 md:m-4 rounded-xl">
+						<AddCategory />
+					</div>
+				)}
+				<div className=" grid grid-cols-1 md:grid-cols-2 gap-3 p-2 md:p-4 justify-items-center border-2 border-black m-2 md:m-4 rounded-xl">
+					<div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+						<div className="border-2 border-black w-full">
+							<AddBudget />
+						</div>
+						<div className="border-2 border-black w-full">
+							<AddBudget />
+						</div>
+
+					</div>
+					
+					
+					<div className="border-2 border-black w-full">budgets</div>
+					
+				</div>
 			</section>
 		</>
 	);
