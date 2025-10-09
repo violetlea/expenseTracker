@@ -1,10 +1,10 @@
 export default function ButtonDef (props) {
 
-    const {text} = props;
+    const {text,handleAction} = props;
 
     return(
     <>
-        <button className="buttonDef">{text}</button>
+        <button className="buttonDef" onClick={handleAction}>{text}</button>
     </>
     );
 
