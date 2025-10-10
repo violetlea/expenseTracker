@@ -1,6 +1,6 @@
 export default function ButtonDef (props) {
 
-    const {text,handleAction} = props;
+    const {text,handleAction,isWhite} = props;
 
     return(
     <>

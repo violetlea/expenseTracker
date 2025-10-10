@@ -18,7 +18,7 @@ export default function AddBudget(props) {
 						</div>
 					</div>
 				</div>
-				<div className="border-2 border-black w-full rounded-lg p-2 w-full">
+				<div className="border-2 border-black rounded-lg p-2 w-full">
 					<div className="grid grid-cols-2 gap-2">
 						<div>
 							<p className="text-sm text-gray-500">Category</p>

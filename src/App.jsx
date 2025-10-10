@@ -4,6 +4,7 @@ import ButtonDef from "./components/Button";
 import AddCategory from "./containers/addCategoryContainer";
 import AddBudget from "./containers/addBudgetContainer";
 import ManageTransaction from "./containers/transactionsContainer";
+import AddTransaction from "./containers/addTransactionContainer";
 function App() {
 	const [visible, setVisible] = useState(false);
 
@@ -59,6 +60,9 @@ function App() {
 					<AddBudget />
 					<ManageTransaction />
 				</div>
+			</section>
+			<section className=" bg-blue-950 fixed bottom-0 w-full left-0 z-50">
+				<AddTransaction />
 			</section>
 		</>
 	);

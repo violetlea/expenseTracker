@@ -5,6 +5,7 @@ export default function ManageTransaction (props) {
             <div className="w-full p-2">
                 <p>Transactions</p>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+                    {/* to use component below */}
                     <div className="rounded-lg bg-blue-500 p-2 grid grid-cols-2">
                         <div className="h-full">
                             <p>300 - Housing '(desc)' </p>
