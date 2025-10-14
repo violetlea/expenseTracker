@@ -1,10 +1,25 @@
 import TextInput from "../components/Input";
 import ButtonDef from "../components/Button";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addCategory } from "../features/Categories/categoriesSlice";
 
 export default function AddCategory(props) {
-	const handleSubmit = () => {
-		alert("yes");
+
+	const [textCategory, setTextCategory] = useState('');
+	const dispatch = useDispatch();
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		dispatch(addCategory(textCategory))
+		setTextCategory('');
+		//alert("yes");
 	};
+
+	const handleTextOnChange = (event) => {
+		setTextCategory(event.target.value);
+	}
+
+
 	return (
 		<>
 			{/* <div class="border-2 border-black rounded-xl w-sm xl:w-3xl lg:w-lg md:w-md sm:w-xs flex flex-row m-1 md:m-4 justify-center ">
@@ -26,9 +41,10 @@ export default function AddCategory(props) {
 				<div className="bg-pink-300">
 					<p>Category</p>
                     <div>
-                        <TextInput label="Category" type='text' />
+                        <TextInput label="Category" value={textCategory} type='text' handleOnChange={handleTextOnChange} />
 					    <ButtonDef text="Add" handleAction={handleSubmit} />
                     </div>
+					{textCategory}
 					
 				</div>
 			</div>
