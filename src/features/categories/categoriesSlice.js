@@ -14,6 +14,6 @@ const categorySlice = createSlice({
 });
 //console.log(state.categorySlice);
 export const allCategories = (state) => state.categories;
-export const { addCategory, editCategory, removeCategory } =
+export const { addCategory, removeCategory } =
 	categorySlice.actions;
 export default categorySlice.reducer;

@@ -65,8 +65,16 @@ function App() {
 				{visible && (
 					
 					<div className="bg-amber-200 p-2 md:p-4 justify-items-center border-2 border-black m-2 md:m-4 rounded-xl">
-						<Categories />
-						<AddCategory />
+						<div className=" grid grid-cols-2 gap-2 w-full">
+							<div className="bg-pink-300">
+								<Categories />
+							</div>
+							<div className="bg-pink-300">
+								<AddCategory />
+							</div>
+						</div>
+						
+						
 					</div>
 				)}
 				<div className=" grid grid-cols-1 md:grid-cols-2 gap-3 p-2 md:p-4 justify-items-center m-2 md:m-4 rounded-xl">

@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux"
 import { allCategories } from "./categoriesSlice";
+import ManageCategoryList from "../../containers/manageCategoryListContainer";
 
 
 export const Categories = () => {
@@ -7,12 +8,13 @@ export const Categories = () => {
 
     return(
         <>
-        <ul>
+        <ManageCategoryList allCategories={loadCategories}/>
+        {/* <ul>
             {loadCategories.map((category) =>
                 <li key={category.index}>{category}</li>
             )}
 
-        </ul>
+        </ul> */}
         </>
     )
 

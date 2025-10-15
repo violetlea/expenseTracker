@@ -8,6 +8,7 @@ export default function AddCategory(props) {
 
 	const [textCategory, setTextCategory] = useState('');
 	const dispatch = useDispatch();
+
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		dispatch(addCategory(textCategory))
@@ -36,18 +37,18 @@ export default function AddCategory(props) {
                     </div>
 				</div>
 			</div> */}
-			<div className=" grid grid-cols-2 gap-2 w-full">
-				<div className="bg-pink-300">list</div>
-				<div className="bg-pink-300">
+			
+				
 					<p>Category</p>
                     <div>
+						{/* fix why the input does not clear */}
                         <TextInput label="Category" value={textCategory} type='text' handleOnChange={handleTextOnChange} />
 					    <ButtonDef text="Add" handleAction={handleSubmit} />
                     </div>
 					{textCategory}
 					
-				</div>
-			</div>
+				
+			
 		</>
 	);
 }
