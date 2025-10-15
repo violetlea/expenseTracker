@@ -5,7 +5,8 @@ import AddCategory from "./containers/addCategoryContainer";
 import AddBudget from "./containers/addBudgetContainer";
 import ManageTransaction from "./containers/transactionsContainer";
 import AddTransaction from "./containers/addTransactionContainer";
-import { Categories } from "./features/Categories/Categories";
+import  {Categories}  from "./features/Categories/Categories";
+import ManageCategoryList from "./containers/manageCategoryListContainer";
 function App() {
 	const [visible, setVisible] = useState(false);
 
