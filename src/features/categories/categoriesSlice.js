@@ -1,6 +1,5 @@
 import { createSlice  } from "@reduxjs/toolkit";
 
-
 const initialState = ["Housing", "Food", "Transportation", "Utilities"];
 
 const categorySlice = createSlice({
@@ -9,16 +8,19 @@ const categorySlice = createSlice({
 	reducers: {
 		addCategory: (state, action) => {
 			state.push(action.payload);
+			
 		},
 		removeCategory: (state, action) => {
-			//const category = action.payload
-			return state.filter((catego) => catego !== action.payload)
-			alert(category)
+			//alert(action.payload)
+			return state.filter((category,index) => index !== action.payload)
+			
 		},
 	},
 });
-//console.log(state.categorySlice);
+
+
 export const allCategories = (state) => state.categories;
 export const { addCategory, removeCategory } =
 	categorySlice.actions;
 export default categorySlice.reducer;
+

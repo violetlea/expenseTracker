@@ -7,6 +7,7 @@ import ManageTransaction from "./containers/transactionsContainer";
 import AddTransaction from "./containers/addTransactionContainer";
 import  {Categories}  from "./features/Categories/Categories";
 import ManageCategoryList from "./containers/manageCategoryListContainer";
+import Budgets from "./features/budgets/Budgets";
 function App() {
 	const [visible, setVisible] = useState(false);
 
@@ -79,13 +80,14 @@ function App() {
 					</div>
 				)}
 				<div className=" grid grid-cols-1 md:grid-cols-2 gap-3 p-2 md:p-4 justify-items-center m-2 md:m-4 rounded-xl">
-					<AddBudget />
+					{/* <AddBudget /> */}
+					<Budgets />
 					<ManageTransaction />
 				</div>
 			</section>
-			<section className=" bg-[#EEEEEE] fixed bottom-0 w-full left-0 z-50">
+			{/* <section className=" bg-[#EEEEEE] fixed bottom-0 w-full left-0 z-50">
 				<AddTransaction />
-			</section>
+			</section> */}
 		</>
 	);
 }

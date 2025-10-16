@@ -3,6 +3,7 @@ import ButtonDef from "../components/Button";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addCategory } from "../features/Categories/categoriesSlice";
+import { addBudget } from "../features/budgets/budgetsSlice";
 
 export default function AddCategory(props) {
 
@@ -11,7 +12,10 @@ export default function AddCategory(props) {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		dispatch(addCategory(textCategory))
+		dispatch(addCategory(textCategory));
+		dispatch(addBudget(textCategory));
+
+		//add another dispatch addBudget
 		setTextCategory('');
 		//alert("yes");
 	};
