@@ -36,7 +36,7 @@ function App() {
       {visible && <AddCategory />}
 
     </div> */}
-	<p>meme</p>
+	
 			<header className="grid grid-cols-1">
 				<div className="p-6 m-4 text-center ">
 					<h1 className="text-[#BADFDB] font-bold text-shadow-md text-2xl">Expense Tracker</h1>

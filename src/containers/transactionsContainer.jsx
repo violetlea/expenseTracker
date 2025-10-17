@@ -1,28 +1,35 @@
+import RoundedDetail from "../components/RoundedDetail";
+import { useSelector } from "react-redux";
+import { allTransactions } from "../features/transactions/transactionsSlice";
+
+
 export default function ManageTransaction (props) {
+
+    //const {values,index,handleRemoveItem} = props;
+
+    const loadTransactions = useSelector(allTransactions);
+
+    const handleRemoveItem = () => {
+
+    }
+
+
     return (
         <>
             
             <div className="w-full p-2">
                 <p className="text-white m-1">Transactions</p>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
-                    {/* to use component below */}
-                    <div className="rounded-lg bg-blue-500 shadow-xl/20 p-2 grid grid-cols-2">
-                        <div className="h-full">
-                            <p>300 - Housing '(desc)' </p>
-                        </div>
-                        <div className="h-full pt-0.5 md:pt-2 lg:pt-0 align-middle" >
-                            <p className="text-right text-white">X</p>
-                        </div>
-                        
-                    </div>
-                    <div className="rounded-lg bg-blue-500 shadow-xl/20 p-2 grid grid-cols-2">
-                        <div className="h-full">
-                            <p>300 - Housing '(desc)' </p>
-                        </div>
-                        <div className="h-full pt-0.5 md:pt-2 lg:pt-0 align-middle">
-                            <p className="text-right text-white ">X</p>
-                        </div>
-                    </div>
+                    {
+                        loadTransactions.map((transaction,index) => (
+                            <RoundedDetail 
+                            text={`${transaction.Category} 
+                            - (${transaction.Description}) - ${transaction.Amount}`} 
+                            key={index}
+                            handleRemoveAction={handleRemoveItem} />
+                        ))
+                    }
+                    
                 </div>
                 <div>
                     <p className="text-white">Total</p>

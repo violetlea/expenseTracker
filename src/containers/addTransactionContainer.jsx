@@ -3,11 +3,14 @@ import TextInput from "../components/Input";
 import ButtonDef from "../components/Button";
 import { useSelector } from "react-redux";
 import { allCategories } from "../features/Categories/categoriesSlice";
+import { addTransaction } from "../features/transactions/transactionsSlice";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 export default function AddTransaction(props) {
 
 	const loadCategory = useSelector(allCategories);
+	const dispatch = useDispatch();
 
 	const [desc,setDesc] = useState('');
 	const [amount,setAmount] = useState(0);
@@ -25,8 +28,18 @@ export default function AddTransaction(props) {
 		setAmount(event.target.value);
 	};
 
-	const handleSubmitTransaction = () => {
-		e.preventDefault();
+	const handleSubmitTransaction = (selectedValue,desc,amount) => {
+		//e.preventDefault();
+		const payload = {
+			Category: selectedValue,
+			Description: desc,
+			Amount: amount
+		};
+		dispatch(addTransaction(payload));
+		setDesc('');
+		setAmount('');
+		setSelectedValue('');
+
 	}
 
 
@@ -58,7 +71,7 @@ export default function AddTransaction(props) {
                 
 			</div>
 			<div className="pl-4 pb-2 w-full">
-                    <ButtonDef isWhite='true' text='+ Transaction' handleAction={handleSubmitTransaction}/>
+                    <ButtonDef isWhite='true' text='+ Transaction' handleAction={() => handleSubmitTransaction(selectedValue,desc,amount)}/>
                 </div>
 		</>
 	);

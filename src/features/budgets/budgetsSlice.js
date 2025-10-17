@@ -1,23 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import allCategories from "../Categories/categoriesSlice";
-import { useSelector } from "react-redux";
-import React, { act } from "react";
-
-/* sample data for budgets slice
- {
-    budgets : [
-        {
-            category: 'Housing',
-            amount: 300
-        },
-        ...
-    ]
- }
-
-
- 
-*/
-
 
 const initialState = [
 	{
@@ -53,11 +34,13 @@ const budgetsSlice = createSlice({
             //alert(action.payload)
         },
 		editBudget: (state, action) => {
-            //alert(action.payload.Category)
+       
             const selectCategory = state.find((category) => category.Category === action.payload.Category);
-            //console.log(selectCategory['Category'])
             selectCategory['Amount'] = action.payload.Amount;
-            //alert(selectCategory)
+         
+        },
+        minusBudget: (state,action) => {
+
         },
         removeBudget: (state,action) => {
             return state.filter((budget,index) => index !== action.payload  )
@@ -66,7 +49,7 @@ const budgetsSlice = createSlice({
         }
 	},
 });
-console.log(initialState);
+//console.log(initialState);
 export const allBudgets = (state) => state.budgets;
 export const { addBudget,editBudget, removeBudget } = budgetsSlice.actions;
 export default budgetsSlice.reducer;
