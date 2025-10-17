@@ -18,14 +18,6 @@ import React, { act } from "react";
  
 */
 
-//const loadCategories = useContext(allCategories);
-
-/* const initialState = Object.fromEntries(
-	allCategories.map((category) => ({
-		Category: category,
-		Amount: 0,
-	}))
-); */
 
 const initialState = [
 	{

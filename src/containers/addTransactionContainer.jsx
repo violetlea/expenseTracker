@@ -1,8 +1,14 @@
 import DropdownDef from "../components/Dropdown";
 import TextInput from "../components/Input";
 import ButtonDef from "../components/Button";
+import { useSelector } from "react-redux";
+import { allCategories } from "../features/Categories/categoriesSlice";
 
 export default function AddTransaction(props) {
+
+	const loadCategory = useSelector(allCategories);
+
+
 	return (
 		<>
 			{/* <p className="p-4">Add Transaction</p> */}
@@ -12,7 +18,7 @@ export default function AddTransaction(props) {
 			<div className="p-4 grid grid-cols-3 gap-3">
 				<div className="">
 					<p className="">Category</p>
-					<DropdownDef />
+					<DropdownDef dropdownList={loadCategory} name='Categories' />
 				</div>
 				<div className="">
 					<p className="">Desc</p>

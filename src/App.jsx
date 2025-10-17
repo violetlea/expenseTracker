@@ -85,9 +85,10 @@ function App() {
 					<ManageTransaction />
 				</div>
 			</section>
-			{/* <section className=" bg-[#EEEEEE] fixed bottom-0 w-full left-0 z-50">
+			{/* fixed left-0 z-50 */}
+			<section className=" bg-[#EEEEEE] bottom-0 w-full ">
 				<AddTransaction />
-			</section> */}
+			</section> 
 		</>
 	);
 }

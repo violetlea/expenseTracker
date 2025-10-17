@@ -7,7 +7,8 @@ const categorySlice = createSlice({
 	initialState: initialState,
 	reducers: {
 		addCategory: (state, action) => {
-			state.push(action.payload);
+			const value = action.payload.charAt(0).toUpperCase()+ action.payload.slice(1);
+			state.push(value);
 			
 		},
 		removeCategory: (state, action) => {
