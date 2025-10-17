@@ -11,11 +11,16 @@ const transactionsSlice = createSlice({
             state.push(action.payload);
         },
         removeTransaction: (state,action) => {
-            
+           // alert(action.payload)
+            return state.filter((transaction,index) => index !== action.payload);
+        },
+        removeAllRelatedCategory: (state,action) => {
+            //alert(action.payload);
+            return state.filter((transaction) => transaction.Category !== action.payload); 
         }
     }
 });
 
 export const allTransactions = (state) => state.transactions;
-export const {addTransaction} = transactionsSlice.actions;
+export const {addTransaction,removeTransaction,removeAllRelatedCategory} = transactionsSlice.actions;
 export default transactionsSlice.reducer;

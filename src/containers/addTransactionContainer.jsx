@@ -6,6 +6,7 @@ import { allCategories } from "../features/Categories/categoriesSlice";
 import { addTransaction } from "../features/transactions/transactionsSlice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { minusBudget } from "../features/budgets/budgetsSlice";
 
 export default function AddTransaction(props) {
 
@@ -30,14 +31,20 @@ export default function AddTransaction(props) {
 
 	const handleSubmitTransaction = (selectedValue,desc,amount) => {
 		//e.preventDefault();
-		const payload = {
+		const payloadTrans = {
 			Category: selectedValue,
 			Description: desc,
 			Amount: amount
 		};
-		dispatch(addTransaction(payload));
+		dispatch(addTransaction(payloadTrans));
+		const payloadBudget = {
+			Category: selectedValue,
+			Amount: amount
+		};
+		//set dispatch action here
+		dispatch(minusBudget(payloadBudget));
 		setDesc('');
-		setAmount('');
+		setAmount(0);
 		setSelectedValue('');
 
 	}

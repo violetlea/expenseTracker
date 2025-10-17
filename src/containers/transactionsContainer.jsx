@@ -1,16 +1,18 @@
 import RoundedDetail from "../components/RoundedDetail";
 import { useSelector } from "react-redux";
 import { allTransactions } from "../features/transactions/transactionsSlice";
-
+import { useDispatch } from "react-redux";
+import { removeTransaction } from "../features/transactions/transactionsSlice";
 
 export default function ManageTransaction (props) {
 
     //const {values,index,handleRemoveItem} = props;
 
     const loadTransactions = useSelector(allTransactions);
+    const dispatch = useDispatch();
 
-    const handleRemoveItem = () => {
-
+    const handleRemoveItem = (index) => {
+        dispatch(removeTransaction(index));
     }
 
 
@@ -26,7 +28,7 @@ export default function ManageTransaction (props) {
                             text={`${transaction.Category} 
                             - (${transaction.Description}) - ${transaction.Amount}`} 
                             key={index}
-                            handleRemoveAction={handleRemoveItem} />
+                            handleRemoveAction={() => handleRemoveItem(index)} />
                         ))
                     }
                     
