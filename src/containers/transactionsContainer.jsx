@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { allTransactions } from "../features/transactions/transactionsSlice";
 import { useDispatch } from "react-redux";
 import { removeTransaction } from "../features/transactions/transactionsSlice";
+import { editBudget } from "../features/budgets/budgetsSlice";
 
 export default function ManageTransaction (props) {
 
@@ -11,8 +12,15 @@ export default function ManageTransaction (props) {
     const loadTransactions = useSelector(allTransactions);
     const dispatch = useDispatch();
 
-    const handleRemoveItem = (index) => {
+    const handleRemoveItem = (index,transaction) => {
         dispatch(removeTransaction(index));
+        const payloadForRemoval = {
+            Category: transaction.Category,
+			Amount: transaction.Amount,
+			isRemoval: true
+        };
+        dispatch(editBudget(payloadForRemoval));
+
     }
 
 
@@ -28,7 +36,7 @@ export default function ManageTransaction (props) {
                             text={`${transaction.Category} 
                             - (${transaction.Description}) - ${transaction.Amount}`} 
                             key={index}
-                            handleRemoveAction={() => handleRemoveItem(index)} />
+                            handleRemoveAction={() => handleRemoveItem(index,transaction)} />
                         ))
                     }
                     

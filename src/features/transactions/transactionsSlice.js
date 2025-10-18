@@ -18,6 +18,7 @@ const transactionsSlice = createSlice({
             //alert(action.payload);
             return state.filter((transaction) => transaction.Category !== action.payload); 
         }
+       
     }
 });
 

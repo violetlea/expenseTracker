@@ -37,9 +37,22 @@ const budgetsSlice = createSlice({
 			const selectCategory = state.find(
 				(category) => category.Category === action.payload.Category
 			);
-			selectCategory["Amount"] = action.payload.Amount;
 
-			//will add another process here when suddenly update new budget
+			if (action.payload.isRemoval) {
+				const updatedFunds =
+					Number(selectCategory["Amount"]) + Number(action.payload.Amount);
+				selectCategory["Amount"] = updatedFunds;
+			} else {
+				//alert(typeof selectCategory["Amount"]);
+
+				if (selectCategory["Amount"] !== 0) {
+					const newBudget = action.payload.Amount;
+					const totalTrans = action.payload.TotalTransaction;
+					selectCategory["Amount"] = Number(newBudget) - Number(totalTrans);
+				} else {
+					selectCategory["Amount"] = action.payload.Amount;
+				}
+			}
 		},
 		minusBudget: (state, action) => {
 			const searchCategory = state.find(
