@@ -4,6 +4,7 @@ import { allTransactions } from "../features/transactions/transactionsSlice";
 import { useDispatch } from "react-redux";
 import { removeTransaction } from "../features/transactions/transactionsSlice";
 import { editBudget } from "../features/budgets/budgetsSlice";
+import { ConvertToDecimal } from "../helpers/helperFunction";
 
 export default function ManageTransaction (props) {
 
@@ -16,7 +17,7 @@ export default function ManageTransaction (props) {
         dispatch(removeTransaction(index));
         const payloadForRemoval = {
             Category: transaction.Category,
-			Amount: transaction.Amount,
+			Amount: ConvertToDecimal(transaction.Amount) ,
 			isRemoval: true
         };
         dispatch(editBudget(payloadForRemoval));
@@ -34,7 +35,7 @@ export default function ManageTransaction (props) {
                         loadTransactions.map((transaction,index) => (
                             <RoundedDetail 
                             text={`${transaction.Category} 
-                            - (${transaction.Description}) - ${transaction.Amount}`} 
+                            - (${transaction.Description}) - ${ConvertToDecimal(transaction.Amount) }`} 
                             key={index}
                             handleRemoveAction={() => handleRemoveItem(index,transaction)} />
                         ))
