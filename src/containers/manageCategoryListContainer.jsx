@@ -4,6 +4,7 @@ import { removeCategory } from "../features/Categories/categoriesSlice";
 import { removeBudget } from "../features/budgets/budgetsSlice";
 import { useState } from "react";
 import { removeAllRelatedCategory } from "../features/transactions/transactionsSlice";
+import { totalBudgets } from "../features/budgets/budgetsSlice";
 
 export default function ManageCategoryList (props) {
 
@@ -15,6 +16,7 @@ export default function ManageCategoryList (props) {
         dispatch(removeCategory(index));
         dispatch(removeBudget(index));
         dispatch(removeAllRelatedCategory(category));
+        //dispatch(totalBudgets());
        // setListCat(allCategories)
         //alert(category)
     }

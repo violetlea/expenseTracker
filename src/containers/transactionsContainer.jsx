@@ -30,7 +30,12 @@ export default function ManageTransaction (props) {
             
             <div className="w-full p-2">
                 <p className="text-white m-1">Transactions</p>
+                
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+                    <RoundedDetail text='test' />
+                    <RoundedDetail text='test' />
+                    <RoundedDetail text='test' />
+                    <RoundedDetail text='test' />
                     {
                         loadTransactions.map((transaction,index) => (
                             <RoundedDetail 

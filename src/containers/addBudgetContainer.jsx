@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { allTransactions } from "../features/transactions/transactionsSlice";
 import { ConvertToDecimal } from "../helpers/helperFunction";
-
+import { totalBudgets } from "../features/budgets/budgetsSlice";
 
 export default function AddBudget(props) {
 	const { categoryLabel, remainFunds } = props;
@@ -20,7 +20,6 @@ export default function AddBudget(props) {
 	};
 
 	const handleUpdateAmount = (categoryLabel, amount, remainFunds) => {
-		
 		if (remainFunds !== 0) {
 			const selectedCategory = loadTransactions.filter(
 				(transaction) => transaction.Category === categoryLabel
@@ -33,46 +32,45 @@ export default function AddBudget(props) {
 			//console.log(total)
 			const payloadUpdateFund = {
 				Category: categoryLabel,
-				Amount:  ConvertToDecimal(amount),
-				TotalTransaction: ConvertToDecimal(total) ,
+				Amount: ConvertToDecimal(amount),
+				TotalTransaction: ConvertToDecimal(total),
 			};
 			dispatch(editBudget(payloadUpdateFund));
 		} else {
 			const payload = {
 				Category: categoryLabel,
-				Amount: ConvertToDecimal(amount) ,
+				Amount: ConvertToDecimal(amount),
 				isRemoval: false,
 			};
 			dispatch(editBudget(payload));
 		}
+		dispatch(totalBudgets());
 
 		setAmount(0);
 	};
 
 	return (
 		<>
-			<div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-				<div className="bg-[#E5E5E5] shadow-xl/20 border-2 border-[#BADFDB] rounded-lg p-2 w-full">
-					<div className="grid grid-cols-2 gap-2">
-						<div>
-							<p className="text-sm text-gray-500">Category</p>
-							<p className="text-md">{categoryLabel}</p>
-							<p>Funds Remaining:  {ConvertToDecimal(remainFunds) }</p>
-						</div>
-						<div>
-							<TextInput
-								label="Amount"
-								type="number"
-								value={amount}
-								handleOnChange={handleAmount}
-							/>
-							<ButtonDef
-								text="Update"
-								handleAction={() =>
-									handleUpdateAmount(categoryLabel, amount, remainFunds)
-								}
-							/>
-						</div>
+			<div className="bg-[#E5E5E5] shadow-xl/20 border-2 border-[#BADFDB] rounded-lg p-2 w-full">
+				<div className="grid grid-cols-2 gap-2">
+					<div>
+						<p className="text-sm text-gray-500">Category</p>
+						<p className="text-md">{categoryLabel}</p>
+						<p>Funds Remaining: {ConvertToDecimal(remainFunds)}</p>
+					</div>
+					<div>
+						<TextInput
+							label="Amount"
+							type="number"
+							value={amount}
+							handleOnChange={handleAmount}
+						/>
+						<ButtonDef
+							text="Update"
+							handleAction={() =>
+								handleUpdateAmount(categoryLabel, amount, remainFunds)
+							}
+						/>
 					</div>
 				</div>
 			</div>

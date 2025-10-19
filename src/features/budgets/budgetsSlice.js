@@ -18,6 +18,7 @@ const initialState = [
 		Amount: 0,
 	},
 ];
+export let totalBudget = 0;
 
 const budgetsSlice = createSlice({
 	name: "budgets",
@@ -62,12 +63,28 @@ const budgetsSlice = createSlice({
 			searchCategory["Amount"] = remainingFunds;
 		},
 		removeBudget: (state, action) => {
-			return state.filter((budget, index) => index !== action.payload);
+			
+			state.filter((budget, index) => index !== action.payload);
+			/*let currentTotal = 0;
+			state.map((budget) => currentTotal += Number(budget.Amount));
+			totalBudget = currentTotal;  */
+			//return newList,totalBudget;
+
 		},
+		totalBudgets: (state,action) => {
+			let currentTotal = 0;
+			state.map((budget) => currentTotal += Number(budget.Amount));
+			totalBudget = currentTotal;
+			alert(totalBudget)
+
+			//todo: to adjust total budget when category is removed
+		}
 	},
 });
 //console.log(initialState);
+
+//export let total = (state) => state.budgets.map((budget) => total += Number(budget.Amount));
 export const allBudgets = (state) => state.budgets;
-export const { addBudget, editBudget, minusBudget, removeBudget } =
+export const { addBudget, editBudget, minusBudget, removeBudget, totalBudgets} =
 	budgetsSlice.actions;
 export default budgetsSlice.reducer;
