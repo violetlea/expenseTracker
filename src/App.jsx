@@ -7,7 +7,7 @@ import ManageTransaction from "./containers/transactionsContainer";
 import AddTransaction from "./containers/addTransactionContainer";
 import { Categories } from "./features/Categories/Categories";
 import Budgets from "./features/budgets/Budgets";
-
+import Transactions from "./features/transactions/Transactions";
 function App() {
 	const [visible, setVisible] = useState(false);
 
@@ -72,7 +72,8 @@ function App() {
 				<div className=" grid grid-cols-1 md:grid-cols-2 gap-3 p-2 md:p-4 justify-items-center m-2 md:m-4 rounded-xl">
 					{/* <AddBudget /> */}
 					<Budgets />
-					<ManageTransaction />
+					<Transactions />
+					{/* <ManageTransaction /> */}
 				</div>
 			</section>
 			{/* fixed left-0 z-50 */}

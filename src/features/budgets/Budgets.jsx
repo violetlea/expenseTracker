@@ -21,7 +21,7 @@ export default function Budgets() {
 					{loadBudgets.map((budget) => (
 						<AddBudget
 							categoryLabel={budget.Category}
-							remainFunds={budget.Amount}
+							remainFunds={budget.RemainingFunds}
 						/>
 					))}
 				</div>

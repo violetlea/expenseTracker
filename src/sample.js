@@ -9,7 +9,8 @@ const state = {
             // structure tu letak dkt dispatch
                 {
                     category: 'Housing',
-                    amount: 0
+                    amount: 0,
+                    RemainingFunds : 0
                 }
                 
             ],
@@ -20,6 +21,7 @@ const state = {
                         category: 'housing', 
                         description: 'rent', 
                         amount: 400, 
+                        
                         
                   
                 

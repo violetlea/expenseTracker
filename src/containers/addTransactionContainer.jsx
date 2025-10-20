@@ -7,6 +7,7 @@ import { addTransaction } from "../features/transactions/transactionsSlice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { minusBudget } from "../features/budgets/budgetsSlice";
+import { totalTransactions } from "../features/transactions/transactionsSlice";
 
 export default function AddTransaction(props) {
 
@@ -43,6 +44,7 @@ export default function AddTransaction(props) {
 		};
 		//set dispatch action here
 		dispatch(minusBudget(payloadBudget));
+		dispatch(totalTransactions());
 		setDesc('');
 		setAmount(0);
 		setSelectedValue('');
