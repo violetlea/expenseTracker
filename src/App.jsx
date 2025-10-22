@@ -2,14 +2,21 @@ import { useState } from "react";
 import "./App.css";
 import ButtonDef from "./components/Button";
 import AddCategory from "./containers/addCategoryContainer";
-import AddBudget from "./containers/addBudgetContainer";
-import ManageTransaction from "./containers/transactionsContainer";
 import AddTransaction from "./containers/addTransactionContainer";
 import { Categories } from "./features/Categories/Categories";
 import Budgets from "./features/budgets/Budgets";
 import Transactions from "./features/transactions/Transactions";
+import { useDispatch } from "react-redux";
+import { clearBudget } from "./features/budgets/budgetsSlice";
+import { totalBudgets } from "./features/budgets/budgetsSlice";
+import { clearAllAddedCategories } from "./features/Categories/categoriesSlice";
+import { removeBudget } from "./features/budgets/budgetsSlice";
+import { removeTransaction } from "./features/transactions/transactionsSlice";
+import { totalTransactions } from "./features/transactions/transactionsSlice";
+
 function App() {
 	const [visible, setVisible] = useState(false);
+	const dispatch = useDispatch();
 
 	const handleSubmitCategory = () => {
 		if (visible) {
@@ -19,24 +26,22 @@ function App() {
 		}
 	};
 
+	const handleClearAll = () => {
+		const payload = {
+			isClearAll: true
+		}
+		dispatch(clearBudget());
+		dispatch(removeBudget(payload));
+		dispatch(clearAllAddedCategories())
+		dispatch(totalBudgets());
+		dispatch(removeTransaction(payload));
+		dispatch(totalTransactions());
+
+		
+	}
+
 	return (
 		<>
-			{/* <div >
-      <header class="p-1 lg:p-8 md:p-4 sm:p-2 text-center">
-				<h1 class="text-sm lg:text-3xl md:text-base ">Expense Tracker</h1>
-			</header>
-			<div class="flex flex-row-reverse w-sm xl:w-3xl lg:w-lg md:w-md sm:w-xs">
-				<div class="ml-2 mr-2">
-					<ButtonDef text={visible ? `Close Category` : `Add Category`} handleAction={handleSubmitCategory} />
-				</div>
-				<div>
-					<ButtonDef text="Clear All" />
-				</div>
-			</div>
-      {visible && <AddCategory />}
-
-    </div> */}
-
 			<header className="grid grid-cols-1">
 				<div className="p-6 m-4 text-center ">
 					<h1 className="text-[#BADFDB] font-bold text-shadow-md text-2xl">
@@ -45,9 +50,9 @@ function App() {
 				</div>
 			</header>
 			<nav>
-				<div className="grid grid-cols-1 ">
+				<div className="grid grid-cols-1 justify-items-end pr-4 md:pr-8">
 					<div>
-						<ButtonDef text="Clear All" />
+						<ButtonDef text="Clear All" handleAction={handleClearAll} />
 						<ButtonDef
 							text={visible ? `Close Category` : `Add Category`}
 							handleAction={handleSubmitCategory}

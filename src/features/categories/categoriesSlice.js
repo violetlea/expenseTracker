@@ -14,14 +14,19 @@ const categorySlice = createSlice({
 		removeCategory: (state, action) => {
 			//alert(action.payload)
 			return state.filter((category,index) => index !== action.payload)
-			
 		},
+		clearAllAddedCategories: (state,action) => {
+			if(state.length > 3){
+				state.splice(4);
+			}
+			
+		}
 	},
 });
 
 
 export const allCategories = (state) => state.categories;
-export const { addCategory, removeCategory } =
+export const { addCategory, removeCategory, clearAllAddedCategories} =
 	categorySlice.actions;
 export default categorySlice.reducer;
 

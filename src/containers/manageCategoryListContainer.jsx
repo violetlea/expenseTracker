@@ -15,11 +15,16 @@ export default function ManageCategoryList (props) {
     const dispatch = useDispatch();
 
     const handleRemoveSelectedItem = (index,category) => {
+        const payloadRemove = {
+            Index : index,
+            isClearAll: false
+        };
         dispatch(removeCategory(index));
-        dispatch(removeBudget(index));
+        dispatch(removeBudget(payloadRemove));
         dispatch(removeAllRelatedCategory(category));
         dispatch(totalBudgets());
         dispatch(totalTransactions());
+        
 
         //dispatch(totalBudgets());
        // setListCat(allCategories)

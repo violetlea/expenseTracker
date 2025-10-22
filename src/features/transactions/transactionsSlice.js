@@ -12,8 +12,12 @@ const transactionsSlice = createSlice({
             state.push(action.payload);
         },
         removeTransaction: (state,action) => {
-           // alert(action.payload)
-            return state.filter((transaction,index) => index !== action.payload);
+            if(action.payload.isClearAll) {
+                state.length = 0;
+            } else {
+                return state.filter((transaction,index) => index !== action.payload.Index);
+            }
+            
         },
         removeAllRelatedCategory: (state,action) => {
             //use this when user remove the category (budget and transaction will be removed)
@@ -23,9 +27,7 @@ const transactionsSlice = createSlice({
             let currentTotal = 0;
             state.map((transaction) => currentTotal += Number(transaction.Amount));
             totalTrans = currentTotal;
-            //alert(totalTrans);
-
-            
+            //alert(totalTrans);  
         }
        
     }

@@ -4,22 +4,22 @@ const initialState = [
 	{
 		Category: "Housing",
 		Amount: 0,
-		RemainingFunds : 0
+		RemainingFunds: 0,
 	},
 	{
 		Category: "Food",
 		Amount: 0,
-		RemainingFunds : 0
+		RemainingFunds: 0,
 	},
 	{
 		Category: "Transportation",
 		Amount: 0,
-		RemainingFunds : 0
+		RemainingFunds: 0,
 	},
 	{
 		Category: "Utilities",
 		Amount: 0,
-		RemainingFunds : 0
+		RemainingFunds: 0,
 	},
 ];
 
@@ -31,11 +31,11 @@ const budgetsSlice = createSlice({
 	reducers: {
 		addBudget: (state, action) => {
 			const category = action.payload;
-			
+
 			const payload = {
 				Category: category.charAt(0).toUpperCase() + category.slice(1),
 				Amount: 0,
-				RemainingFunds: 0
+				RemainingFunds: 0,
 			};
 			//alert(payload['Category'])
 			state.push(payload);
@@ -50,9 +50,9 @@ const budgetsSlice = createSlice({
 
 			if (action.payload.isRemoval) {
 				const updatedFunds =
-					Number(selectCategory["RemainingFunds"]) + Number(action.payload.Amount);
+					Number(selectCategory["RemainingFunds"]) +
+					Number(action.payload.Amount);
 				selectCategory["RemainingFunds"] = updatedFunds;
-
 			} else {
 				//alert(typeof selectCategory["Amount"]);
 
@@ -60,7 +60,8 @@ const budgetsSlice = createSlice({
 					const newBudget = action.payload.Amount;
 					const totalTrans = action.payload.TotalTransaction;
 					selectCategory["Amount"] = Number(newBudget) - Number(totalTrans);
-					selectCategory["RemainingFunds"] = Number(newBudget) - Number(totalTrans);
+					selectCategory["RemainingFunds"] =
+						Number(newBudget) - Number(totalTrans);
 				} else {
 					selectCategory["Amount"] = action.payload.Amount;
 					selectCategory["RemainingFunds"] = action.payload.Amount;
@@ -71,28 +72,49 @@ const budgetsSlice = createSlice({
 			const searchCategory = state.find(
 				(category) => category.Category === action.payload.Category
 			);
-			const remainingFunds = searchCategory["RemainingFunds"] - action.payload.Amount;
+			const remainingFunds =
+			searchCategory["RemainingFunds"] - action.payload.Amount;
 			searchCategory["RemainingFunds"] = remainingFunds;
 		},
 		removeBudget: (state, action) => {
-			
-			return state.filter((budget, index) => index !== action.payload);
 
+			if(action.payload.isClearAll) {
+				if(state.length > 3) {
+					state.splice(4);
+				}
+				
+
+			} else {
+				return state.filter((budget, index) => index !== action.payload.Index);
+
+			}
+			
 		},
-		totalBudgets: (state,action) => {
+		totalBudgets: (state, action) => {
 			let currentTotal = 0;
-			state.map((budget) => currentTotal += Number(budget.Amount));
+			state.map((budget) => (currentTotal += Number(budget.Amount)));
 			totalBudget = currentTotal;
 
-
 			//todo: to adjust total budget when transction/category is removed
-		}
+		},
+		clearBudget: (state, action) => {
+			state.map((budget) => {
+				budget["Amount"] = 0;
+				budget["RemainingFunds"] = 0;
+			});
+		},
 	},
 });
 //console.log(initialState);
 
 //export let total = (state) => state.budgets.map((budget) => total += Number(budget.Amount));
 export const allBudgets = (state) => state.budgets;
-export const { addBudget, editBudget, minusBudget, removeBudget, totalBudgets} =
-	budgetsSlice.actions;
+export const {
+	addBudget,
+	editBudget,
+	minusBudget,
+	removeBudget,
+	totalBudgets,
+	clearBudget,
+} = budgetsSlice.actions;
 export default budgetsSlice.reducer;

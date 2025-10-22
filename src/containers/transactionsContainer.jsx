@@ -12,7 +12,11 @@ export default function ManageTransaction() {
 	const dispatch = useDispatch();
 
 	const handleRemoveItem = (index, transaction) => {
-		dispatch(removeTransaction(index));
+		const payload = {
+			Index : index,
+			isClearAll : false
+		};
+		dispatch(removeTransaction(payload));
 		const payloadForRemoval = {
 			Category: transaction.Category,
 			Amount: ConvertToDecimal(transaction.Amount),
