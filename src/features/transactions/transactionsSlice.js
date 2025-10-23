@@ -17,7 +17,6 @@ const transactionsSlice = createSlice({
             } else {
                 return state.filter((transaction,index) => index !== action.payload.Index);
             }
-            
         },
         removeAllRelatedCategory: (state,action) => {
             //use this when user remove the category (budget and transaction will be removed)

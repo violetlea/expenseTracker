@@ -31,6 +31,7 @@ export default function AddTransaction(props) {
 	};
 
 	const handleSubmitTransaction = (selectedValue,desc,amount) => {
+		//to add error handling
 		//e.preventDefault();
 		const payloadTrans = {
 			Category: selectedValue,

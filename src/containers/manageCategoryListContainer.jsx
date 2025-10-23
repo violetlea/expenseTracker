@@ -32,7 +32,8 @@ export default function ManageCategoryList (props) {
     }
     return (
         <>
-            {allCategories.map((category,index)=> (
+            <div className="grid grid-cols-2 gap-2 ">
+                {allCategories.map((category,index)=> (
             
                 <RoundedDetail text={category} index={index} key={index} 
                 handleRemoveAction={() => handleRemoveSelectedItem(index,category)}/>
@@ -42,6 +43,9 @@ export default function ManageCategoryList (props) {
                 
   
             ))}
+
+            </div>
+            
             
         </>
     )
