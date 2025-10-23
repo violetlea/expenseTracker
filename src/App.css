@@ -9,7 +9,15 @@
 }
 
 .buttonDef {
-  @apply rounded-xl  text-white bg-[#1089FF] p-2 text-sm ml-2 cursor-pointer
+  @apply rounded-xl text-white  p-2 text-sm ml-2 cursor-pointer
+}
+
+.primaryBtn {
+  @apply  bg-[#1089FF]
+}
+
+.secondaryBtn {
+  @apply bg-gray-700
 }
 
 /*#root {

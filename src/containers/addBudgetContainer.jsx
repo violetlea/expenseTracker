@@ -7,11 +7,13 @@ import { useSelector } from "react-redux";
 import { allTransactions } from "../features/transactions/transactionsSlice";
 import { ConvertToDecimal } from "../helpers/helperFunction";
 import { totalBudgets } from "../features/budgets/budgetsSlice";
+import ValidationMessage from "../components/ValidationMessage";
 
 export default function AddBudget(props) {
 	const { categoryLabel, remainFunds } = props;
 
 	const [amount, setAmount] = useState(0);
+	const [message,setMessage] = useState('')
 	const dispatch = useDispatch();
 	const loadTransactions = useSelector(allTransactions);
 
@@ -20,6 +22,11 @@ export default function AddBudget(props) {
 	};
 
 	const handleUpdateAmount = (categoryLabel, amount, remainFunds) => {
+
+		if(amount === 0) {
+			setMessage('Insert the amount!');
+		} 
+
 		if (remainFunds !== 0) {
 			const selectedCategory = loadTransactions.filter(
 				(transaction) => transaction.Category === categoryLabel
@@ -36,6 +43,7 @@ export default function AddBudget(props) {
 				TotalTransaction: ConvertToDecimal(total),
 			};
 			dispatch(editBudget(payloadUpdateFund));
+			setMessage('');
 		} else {
 			const payload = {
 				Category: categoryLabel,
@@ -43,10 +51,12 @@ export default function AddBudget(props) {
 				isRemoval: false,
 			};
 			dispatch(editBudget(payload));
+			
 		}
 		dispatch(totalBudgets());
 
 		setAmount(0);
+		
 	};
 
 	return (
@@ -59,17 +69,22 @@ export default function AddBudget(props) {
 						<p>Funds Remaining: {ConvertToDecimal(remainFunds)}</p>
 					</div>
 					<div>
+						{/* to add red line to input if error */}
 						<TextInput
 							label="Amount"
 							type="number"
 							value={amount}
 							handleOnChange={handleAmount}
 						/>
+
+						{message !== '' && <ValidationMessage text={message} />}
+						
 						<ButtonDef
 							text="Update"
 							handleAction={() =>
 								handleUpdateAmount(categoryLabel, amount, remainFunds)
 							}
+							typeBtn='primary'
 						/>
 					</div>
 				</div>

@@ -1,11 +1,15 @@
-export default function ButtonDef (props) {
+export default function ButtonDef(props) {
+	const { text, handleAction, typeBtn } = props;
 
-    const {text,handleAction,isWhite} = props;
-
-    return(
-    <>
-        <button className="buttonDef" onClick={handleAction}>{text}</button>
-    </>
-    );
-
+	return (
+		<>
+			<button
+				className={`buttonDef ${
+					typeBtn === "primary" ? `primaryBtn` : `secondaryBtn`
+				}`}
+				onClick={handleAction}>
+				{text}
+			</button>
+		</>
+	);
 }

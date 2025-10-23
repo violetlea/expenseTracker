@@ -82,11 +82,9 @@ const budgetsSlice = createSlice({
 				if(state.length > 3) {
 					state.splice(4);
 				}
-				
 
 			} else {
 				return state.filter((budget, index) => index !== action.payload.Index);
-
 			}
 			
 		},

@@ -1,19 +1,30 @@
 export default function RoundedDetail(props) {
-
-	const {text,handleRemoveAction,index} = props;
+	const { text, handleRemoveAction, index } = props;
 
 	return (
 		<>
-
-
-			<div className="rounded-lg bg-blue-500 p-2 grid grid-cols-2">
-				<div className="h-full">
-					<p key={index}>{text}</p>
+			<div className="rounded-lg bg-blue-500 p-2 grid grid-cols-7">
+				<div className="col-span-6 flex items-center justify-start">
+					<p key={index} className="text-wrap">{text}</p>
 				</div>
-				<div className="h-full pt-0.5 md:pt-2 lg:pt-0 align-middle">
+				<div className="flex items-center justify-end">
 					{/* add pointer css to button */}
-					<button key={index} className="text-right font-bold" onClick={handleRemoveAction}>X</button>
-					
+					<button
+						key={index}
+						className="text-right font-bold cursor-pointer"
+						onClick={handleRemoveAction}>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 24 24"
+							fill="currentColor"
+							className="size-6">
+							<path
+								fillRule="evenodd"
+								d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm3 10.5a.75.75 0 0 0 0-1.5H9a.75.75 0 0 0 0 1.5h6Z"
+								clipRule="evenodd"
+							/>
+						</svg>
+					</button>
 				</div>
 			</div>
 		</>

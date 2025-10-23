@@ -33,7 +33,7 @@ export default function AddCategory(props) {
 					type="text"
 					handleOnChange={handleTextOnChange}
 				/>
-				<ButtonDef text="Add" handleAction={handleSubmit} />
+				<ButtonDef text="Add" typeBtn='primary' handleAction={handleSubmit} />
 			</div>
 		</>
 	);
