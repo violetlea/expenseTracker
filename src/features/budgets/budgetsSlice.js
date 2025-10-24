@@ -24,6 +24,7 @@ const initialState = [
 ];
 
 export let totalBudget = 0;
+export let isCurrentAmountNull = false;
 
 const budgetsSlice = createSlice({
 	name: "budgets",
@@ -59,7 +60,8 @@ const budgetsSlice = createSlice({
 				if (selectCategory["Amount"] !== 0) {
 					const newBudget = action.payload.Amount;
 					const totalTrans = action.payload.TotalTransaction;
-					selectCategory["Amount"] = Number(newBudget) - Number(totalTrans);
+					selectCategory["Amount"] = action.payload.Amount;
+					//Number(newBudget) - Number(totalTrans);
 					selectCategory["RemainingFunds"] =
 						Number(newBudget) - Number(totalTrans);
 				} else {
@@ -67,6 +69,7 @@ const budgetsSlice = createSlice({
 					selectCategory["RemainingFunds"] = action.payload.Amount;
 				}
 			}
+			isCurrentAmountNull = false;
 		},
 		minusBudget: (state, action) => {
 			const searchCategory = state.find(
@@ -101,6 +104,15 @@ const budgetsSlice = createSlice({
 				budget["RemainingFunds"] = 0;
 			});
 		},
+		searchBudget: (state,action) => {
+			const insertedCategory = action.payload;
+			const findCategory = state.find((budget) => budget.Category === insertedCategory);
+			const currentAmount = findCategory.Amount;
+
+			if(currentAmount === 0 ) {
+				isCurrentAmountNull = true
+			} 
+		}
 	},
 });
 //console.log(initialState);
@@ -114,5 +126,6 @@ export const {
 	removeBudget,
 	totalBudgets,
 	clearBudget,
+	searchBudget
 } = budgetsSlice.actions;
 export default budgetsSlice.reducer;

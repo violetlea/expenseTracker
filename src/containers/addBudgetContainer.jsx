@@ -13,7 +13,7 @@ export default function AddBudget(props) {
 	const { categoryLabel, remainFunds } = props;
 
 	const [amount, setAmount] = useState(0);
-	const [message,setMessage] = useState('')
+	const [message, setMessage] = useState("");
 	const dispatch = useDispatch();
 	const loadTransactions = useSelector(allTransactions);
 
@@ -22,12 +22,10 @@ export default function AddBudget(props) {
 	};
 
 	const handleUpdateAmount = (categoryLabel, amount, remainFunds) => {
-
-		if(amount === 0) {
-			setMessage('Insert the amount!');
-		} 
-
-		if (remainFunds !== 0) {
+		if (amount === 0) {
+			setMessage("Insert amount!");
+		} else {
+			if (remainFunds !== 0) {
 			const selectedCategory = loadTransactions.filter(
 				(transaction) => transaction.Category === categoryLabel
 			);
@@ -43,7 +41,8 @@ export default function AddBudget(props) {
 				TotalTransaction: ConvertToDecimal(total),
 			};
 			dispatch(editBudget(payloadUpdateFund));
-			setMessage('');
+			message !== '' && setMessage("");
+			
 		} else {
 			const payload = {
 				Category: categoryLabel,
@@ -51,7 +50,9 @@ export default function AddBudget(props) {
 				isRemoval: false,
 			};
 			dispatch(editBudget(payload));
-			
+			message !== '' && setMessage("");
+		}
+
 		}
 		dispatch(totalBudgets());
 
@@ -62,30 +63,34 @@ export default function AddBudget(props) {
 	return (
 		<>
 			<div className="bg-[#E5E5E5] shadow-xl/20 border-2 border-[#BADFDB] rounded-lg p-2 w-full">
-				<div className="grid grid-cols-2 gap-2">
-					<div>
+				<div className="grid grid-cols-3 gap-2">
+					<div className="col-span-2">
 						<p className="text-sm text-gray-500">Category</p>
 						<p className="text-md">{categoryLabel}</p>
-						<p>Funds Remaining: {ConvertToDecimal(remainFunds)}</p>
+						<p className="text-base">Funds Remaining: </p>
+						<p className="text-lg">{ConvertToDecimal(remainFunds)}</p>
 					</div>
-					<div>
+					<div className="pt-3 pb-2">
 						{/* to add red line to input if error */}
-						<TextInput
-							label="Amount"
-							type="number"
-							value={amount}
-							handleOnChange={handleAmount}
-						/>
+						<div className="flex justify-end">
+							<TextInput
+								label="Amount"
+								type="number"
+								value={amount}
+								handleOnChange={handleAmount}
+							/>
+						</div>
+						{message !== "" && <ValidationMessage text={message} />}
 
-						{message !== '' && <ValidationMessage text={message} />}
-						
-						<ButtonDef
-							text="Update"
-							handleAction={() =>
-								handleUpdateAmount(categoryLabel, amount, remainFunds)
-							}
-							typeBtn='primary'
-						/>
+						<div className="flex justify-end">
+							<ButtonDef
+								text="Update"
+								handleAction={() =>
+									handleUpdateAmount(categoryLabel, amount, remainFunds)
+								}
+								typeBtn="primary"
+							/>
+						</div>
 					</div>
 				</div>
 			</div>

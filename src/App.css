@@ -9,7 +9,7 @@
 }
 
 .buttonDef {
-  @apply rounded-xl text-white  p-2 text-sm ml-2 cursor-pointer
+  @apply rounded-xl text-white  pt-1 pb-1 pr-4 pl-4 text-sm ml-2 cursor-pointer
 }
 
 .primaryBtn {

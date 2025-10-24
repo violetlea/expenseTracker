@@ -83,19 +83,19 @@ function App() {
 			</nav>
 			<CategoriesModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
 
-			<section className="grid grid-cols-1">
+			<section className="grid grid-cols-1 scroll-auto">
 				<div className=" grid grid-cols-1 md:grid-cols-2 gap-3 p-2 md:p-4 justify-items-center m-2 md:m-4 rounded-xl">
 					{/* <AddBudget /> */}
 					<Budgets />
 					<Transactions />
 				</div>
 			</section>
-			{/* fixed left-0 z-50 */}
-			<section className=" bg-[#EEEEEE] bottom-0 w-full ">
+			{/*  */}
+			<section className="fixed left-0 z-50 bg-[#EEEEEE] bottom-0 w-full ">
 				<AddTransaction />
 			</section>
-			<footer>
-				<p>Created by violet</p>
+			<footer className="flex justify-center p-4  h-48">
+				<p className="text-white">Created by violet</p>
 			</footer>
 		</>
 	);

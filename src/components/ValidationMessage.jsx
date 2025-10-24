@@ -4,7 +4,7 @@ export default function ValidationMessage (props) {
     
     return (
         <>
-            <p className="text-sm text-red-600">{text}</p>
+            <p className="text-xs text-red-600">{text}</p>
         </>
     )
 }

@@ -8,6 +8,9 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { minusBudget } from "../features/budgets/budgetsSlice";
 import { totalTransactions } from "../features/transactions/transactionsSlice";
+import ValidationMessage from "../components/ValidationMessage";
+import { searchBudget } from "../features/budgets/budgetsSlice";
+import { isCurrentAmountNull } from "../features/budgets/budgetsSlice";
 
 export default function AddTransaction(props) {
 	const loadCategory = useSelector(allCategories);
@@ -16,6 +19,7 @@ export default function AddTransaction(props) {
 	const [desc, setDesc] = useState("");
 	const [amount, setAmount] = useState(0);
 	const [selectedValue, setSelectedValue] = useState("");
+	const [message, setMessage] = useState("");
 
 	const handleSelectedValue = (event) => {
 		setSelectedValue(event.target.value);
@@ -30,24 +34,48 @@ export default function AddTransaction(props) {
 	};
 
 	const handleSubmitTransaction = (selectedValue, desc, amount) => {
-		//to add error handling
-		//e.preventDefault();
-		const payloadTrans = {
-			Category: selectedValue,
-			Description: desc,
-			Amount: amount,
-		};
-		dispatch(addTransaction(payloadTrans));
-		const payloadBudget = {
-			Category: selectedValue,
-			Amount: amount,
-		};
-		//set dispatch action here
-		dispatch(minusBudget(payloadBudget));
-		dispatch(totalTransactions());
-		setDesc("");
-		setAmount(0);
-		setSelectedValue("");
+		
+		if(selectedValue === "") {
+			//alert("please select category!")
+			setMessage("Please select category!");
+		} else {
+			dispatch(searchBudget(selectedValue));
+			console.log(isCurrentAmountNull);
+
+			if(isCurrentAmountNull) {
+				//alert('insert budget first!')
+				setMessage("Insert budget first!");
+			
+			} else {
+				if (amount === 0) {
+				setMessage("Insert amount!");
+				} else {
+					const payloadTrans = {
+						Category: selectedValue,
+						Description: desc,
+						Amount: amount,
+					};
+					dispatch(addTransaction(payloadTrans));
+					const payloadBudget = {
+						Category: selectedValue,
+						Amount: amount,
+					};
+					//set dispatch action here
+					dispatch(minusBudget(payloadBudget));
+					dispatch(totalTransactions());
+					setDesc("");
+					setAmount(0);
+					setSelectedValue("");
+					setMessage("");
+				}
+
+			}
+
+		}
+		
+
+		
+		
 	};
 
 	return (
@@ -77,11 +105,11 @@ export default function AddTransaction(props) {
 						name="Categories"
 						handleSelectOnChange={handleSelectedValue}
 					/>
-					{selectedValue}
 				</div>
 				<div className="">
 					<p className="">Desc</p>
-					<TextInput type="text" value={desc} handleOnChange={handleDesc} />
+					<TextInput type="text" value={desc} label="Insert description"
+					 handleOnChange={handleDesc} />
 				</div>
 				<div className="">
 					<p className="">Amount</p>
@@ -90,9 +118,11 @@ export default function AddTransaction(props) {
 						value={amount}
 						handleOnChange={handleAmount}
 					/>
+					{message !== "" && <ValidationMessage text={message} />}
 				</div>
+				
 			</div>
-			<div className="pl-4 pb-2 w-full">
+			<div className="pl-8 pr-12 pb-4 w-full flex justify-end-safe">
 				<ButtonDef
 					typeBtn="primary"
 					text="+ Transaction"

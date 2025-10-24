@@ -4,7 +4,7 @@ export default function DropdownDef (props) {
 
     return(
         <>
-            <select name={name} value={selectedValue} onChange={handleSelectOnChange} className="border-2 rounded-lg border-white bg-white w-full p-1">
+            <select name={name} value={selectedValue} onChange={handleSelectOnChange} className="rounded-md bg-white w-full p-1">
                 <option value="">Select category</option>
             {
                 dropdownList.map((list) => (
