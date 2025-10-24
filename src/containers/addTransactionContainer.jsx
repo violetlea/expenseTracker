@@ -2,7 +2,7 @@ import DropdownDef from "../components/Dropdown";
 import TextInput from "../components/Input";
 import ButtonDef from "../components/Button";
 import { useSelector } from "react-redux";
-import { allCategories } from "../features/Categories/categoriesSlice";
+import { allCategories } from "../features/categories/categoriesSlice";
 import { addTransaction } from "../features/transactions/transactionsSlice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";

@@ -1,11 +1,9 @@
 import RoundedDetail from "../components/RoundedDetail"
 import { useDispatch } from "react-redux";
-import { removeCategory } from "../features/Categories/categoriesSlice";
+import { removeCategory } from "../features/categories/categoriesSlice";
 import { removeBudget } from "../features/budgets/budgetsSlice";
-import { useState } from "react";
 import { removeAllRelatedCategory } from "../features/transactions/transactionsSlice";
 import { totalBudgets } from "../features/budgets/budgetsSlice";
-import { totalTrans } from "../features/transactions/transactionsSlice";
 import { totalTransactions } from "../features/transactions/transactionsSlice";
 
 export default function ManageCategoryList (props) {

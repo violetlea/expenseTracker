@@ -2,7 +2,7 @@ import TextInput from "../components/Input";
 import ButtonDef from "../components/Button";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addCategory } from "../features/Categories/categoriesSlice";
+import { addCategory } from "../features/categories/categoriesSlice";
 import { addBudget } from "../features/budgets/budgetsSlice";
 import ValidationMessage from "../components/ValidationMessage";
 

@@ -6,7 +6,7 @@ import {
 	DialogBackdrop,
 } from "@headlessui/react";
 
-import { Categories } from "../features/Categories/Categories";
+import { Categories } from "../features/categories/Categories";
 import AddCategory from "./addCategoryContainer";
 
 export default function CategoriesModal(props) {

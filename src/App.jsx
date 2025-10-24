@@ -7,7 +7,7 @@ import Transactions from "./features/transactions/Transactions";
 import { useDispatch } from "react-redux";
 import { clearBudget } from "./features/budgets/budgetsSlice";
 import { totalBudgets } from "./features/budgets/budgetsSlice";
-import { clearAllAddedCategories } from "./features/Categories/categoriesSlice";
+import { clearAllAddedCategories } from "./features/categories/categoriesSlice";
 import { removeBudget } from "./features/budgets/budgetsSlice";
 import { removeTransaction } from "./features/transactions/transactionsSlice";
 import { totalTransactions } from "./features/transactions/transactionsSlice";
