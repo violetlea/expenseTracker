@@ -1,6 +1,6 @@
 @import "tailwindcss";
 * {
-  font-family: Tahoma;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 /*:root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;

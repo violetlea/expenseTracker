@@ -8,56 +8,66 @@ import { allTransactions } from "../features/transactions/transactionsSlice";
 import { ConvertToDecimal } from "../helpers/helperFunction";
 import { totalBudgets } from "../features/budgets/budgetsSlice";
 import ValidationMessage from "../components/ValidationMessage";
+import { CheckAnySymbolsInNumber } from "../helpers/helperFunction";
 
 export default function AddBudget(props) {
-	const { categoryLabel, remainFunds } = props;
+	const { categoryLabel, remainFunds, budgetAmount } = props;
 
-	const [amount, setAmount] = useState(0);
+	const [amount, setAmount] = useState(""); //input type changed to text
 	const [message, setMessage] = useState("");
+	const [isError, setIsError] = useState(false);
 	const dispatch = useDispatch();
 	const loadTransactions = useSelector(allTransactions);
+	
 
 	const handleAmount = (event) => {
 		setAmount(event.target.value);
 	};
 
 	const handleUpdateAmount = (categoryLabel, amount, remainFunds) => {
-		if (amount === 0) {
+
+		let isAnySymbol = CheckAnySymbolsInNumber(amount);
+		console.log(isAnySymbol);
+
+		if (Number(amount) === 0) {
 			setMessage("Insert amount!");
+			setIsError(true);
+		} else if (isAnySymbol) {
+			setMessage("Whole number only!");
+			setIsError(true);
 		} else {
 			if (remainFunds !== 0) {
-			const selectedCategory = loadTransactions.filter(
-				(transaction) => transaction.Category === categoryLabel
-			);
+				const selectedCategory = loadTransactions.filter(
+					(transaction) => transaction.Category === categoryLabel
+				);
 
-			let total = 0;
-			selectedCategory.map(
-				(transaction) => (total += Number(transaction.Amount))
-			);
-			//console.log(total)
-			const payloadUpdateFund = {
-				Category: categoryLabel,
-				Amount: ConvertToDecimal(amount),
-				TotalTransaction: ConvertToDecimal(total),
-			};
-			dispatch(editBudget(payloadUpdateFund));
-			message !== '' && setMessage("");
-			
-		} else {
-			const payload = {
-				Category: categoryLabel,
-				Amount: ConvertToDecimal(amount),
-				isRemoval: false,
-			};
-			dispatch(editBudget(payload));
-			message !== '' && setMessage("");
-		}
-
+				let total = 0;
+				selectedCategory.map(
+					(transaction) => (total += Number(transaction.Amount))
+				);
+				//console.log(total)
+				const payloadUpdateFund = {
+					Category: categoryLabel,
+					Amount: ConvertToDecimal(amount),
+					TotalTransaction: ConvertToDecimal(total),
+				};
+				dispatch(editBudget(payloadUpdateFund));
+				message !== "" && setMessage("");
+				isError === true && setIsError(false);
+			} else {
+				const payload = {
+					Category: categoryLabel,
+					Amount: ConvertToDecimal(amount),
+					isRemoval: false,
+				};
+				dispatch(editBudget(payload));
+				message !== "" && setMessage("");
+				isError === true && setIsError(false);
+			}
 		}
 		dispatch(totalBudgets());
 
-		setAmount(0);
-		
+		setAmount("");
 	};
 
 	return (
@@ -65,19 +75,26 @@ export default function AddBudget(props) {
 			<div className="bg-[#E5E5E5] shadow-xl/20 border-2 border-[#BADFDB] rounded-lg p-2 w-full">
 				<div className="grid grid-cols-3 gap-2">
 					<div className="col-span-2">
-						<p className="text-sm text-gray-500">Category</p>
+						<p className="text-xs text-gray-500">Category</p>
 						<p className="text-md">{categoryLabel}</p>
-						<p className="text-base">Funds Remaining: </p>
-						<p className="text-lg">{ConvertToDecimal(remainFunds)}</p>
+						<p className="text-xs ">Budget: {ConvertToDecimal(budgetAmount)}</p>
+						<p className="text-xs">Funds Remaining: </p>
+						<p
+							className={`text-lg te ${
+								remainFunds < 0 ? `text-red-800` : `text-black`
+							}`}>
+							{ConvertToDecimal(remainFunds)}
+						</p>
 					</div>
 					<div className="pt-3 pb-2">
 						{/* to add red line to input if error */}
 						<div className="flex justify-end">
 							<TextInput
 								label="Amount"
-								type="number"
+								type="text"
 								value={amount}
 								handleOnChange={handleAmount}
+								isError={isError}
 							/>
 						</div>
 						{message !== "" && <ValidationMessage text={message} />}

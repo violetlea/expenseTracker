@@ -60,7 +60,7 @@ function App() {
 						{/* adjust this */}
 						{totalBudget != 0 && (
 							<ButtonDef
-								text="Clear"
+								text="Clear All"
 								typeBtn="primary"
 								handleAction={handleClearAll}
 							/>
@@ -68,7 +68,7 @@ function App() {
 					</div>
 					<div className="">
 						<ButtonDef
-							text="+ Category"
+							text="Manage Category"
 							handleAction={handleSubmitCategory}
 							typeBtn="primary"
 						/>

@@ -1,4 +1,4 @@
-import RoundedDetail from "../components/RoundedDetail"
+import RoundedDetail from "../components/RoundedDetail";
 import { useDispatch } from "react-redux";
 import { removeCategory } from "../features/categories/categoriesSlice";
 import { removeBudget } from "../features/budgets/budgetsSlice";
@@ -6,45 +6,38 @@ import { removeAllRelatedCategory } from "../features/transactions/transactionsS
 import { totalBudgets } from "../features/budgets/budgetsSlice";
 import { totalTransactions } from "../features/transactions/transactionsSlice";
 
-export default function ManageCategoryList (props) {
+export default function ManageCategoryList(props) {
+	const { allCategories } = props;
+	// const [listCat,setListCat] = useState(allCategories);
+	const dispatch = useDispatch();
 
-    const {allCategories} = props;
-   // const [listCat,setListCat] = useState(allCategories);
-    const dispatch = useDispatch();
+	const handleRemoveSelectedItem = (index, category) => {
+		const payloadRemove = {
+			Index: index,
+			isClearAll: false,
+		};
+		dispatch(removeCategory(index));
+		dispatch(removeBudget(payloadRemove));
+		dispatch(removeAllRelatedCategory(category));
+		dispatch(totalBudgets());
+		dispatch(totalTransactions());
 
-    const handleRemoveSelectedItem = (index,category) => {
-        const payloadRemove = {
-            Index : index,
-            isClearAll: false
-        };
-        dispatch(removeCategory(index));
-        dispatch(removeBudget(payloadRemove));
-        dispatch(removeAllRelatedCategory(category));
-        dispatch(totalBudgets());
-        dispatch(totalTransactions());
-        
-
-        //dispatch(totalBudgets());
-       // setListCat(allCategories)
-        //alert(category)
-    }
-    return (
-        <>
-            <div className="grid grid-cols-2 gap-2 ">
-                {allCategories.map((category,index)=> (
-            
-                <RoundedDetail text={category} index={index} key={index} 
-                handleRemoveAction={() => handleRemoveSelectedItem(index,category)}/>
-               
-     
-                
-                
-  
-            ))}
-
-            </div>
-            
-            
-        </>
-    )
+		//dispatch(totalBudgets());
+		// setListCat(allCategories)
+		//alert(category)
+	};
+	return (
+		<>
+			<div className="grid grid-cols-2 gap-2 ">
+				{allCategories.map((category, index) => (
+					<RoundedDetail
+						text={category}
+						index={index}
+						key={index}
+						handleRemoveAction={() => handleRemoveSelectedItem(index, category)}
+					/>
+				))}
+			</div>
+		</>
+	);
 }

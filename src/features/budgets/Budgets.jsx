@@ -22,6 +22,7 @@ export default function Budgets() {
 						<AddBudget
 							categoryLabel={budget.Category}
 							remainFunds={budget.RemainingFunds}
+							budgetAmount={budget.Amount}
 						/>
 					))}
 				</div>

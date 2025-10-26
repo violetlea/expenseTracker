@@ -11,7 +11,6 @@ export default function TotalBudgetTrans() {
     const handleTotal = (totalBudget) => {
         totalAll = totalBudget;
     }
-    //try useEffect
 
 	console.log();
 

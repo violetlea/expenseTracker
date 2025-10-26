@@ -9,6 +9,7 @@ import ValidationMessage from "../components/ValidationMessage";
 export default function AddCategory(props) {
 	const [textCategory, setTextCategory] = useState("");
 	const [message, setMessage] = useState("");
+	const [isError,setIsError] = useState(false);
 	
 	const dispatch = useDispatch();
 
@@ -19,7 +20,8 @@ export default function AddCategory(props) {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		if(textCategory === ""){
-			setMessage("Insert category!")
+			setMessage("Insert category!");
+			setIsError(true);
 		} else {
 			dispatch(addCategory(textCategory));
 			dispatch(addBudget(textCategory));
@@ -28,6 +30,7 @@ export default function AddCategory(props) {
 
 		//add another dispatch addBudget
 		setTextCategory("");
+		isError === true && setIsError(false);
 		//alert("yes");
 	};
 
@@ -42,6 +45,7 @@ export default function AddCategory(props) {
 					value={textCategory}
 					type="text"
 					handleOnChange={handleTextOnChange}
+					isError={isError}
 				/>
 				{message !== "" &&<ValidationMessage text={message} />}
 				<div className="flex justify-end">

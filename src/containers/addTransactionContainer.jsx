@@ -11,15 +11,18 @@ import { totalTransactions } from "../features/transactions/transactionsSlice";
 import ValidationMessage from "../components/ValidationMessage";
 import { searchBudget } from "../features/budgets/budgetsSlice";
 import { isCurrentAmountNull } from "../features/budgets/budgetsSlice";
-
+import { CheckAnySymbolsInNumber } from "../helpers/helperFunction";
 export default function AddTransaction(props) {
 	const loadCategory = useSelector(allCategories);
 	const dispatch = useDispatch();
 
 	const [desc, setDesc] = useState("");
-	const [amount, setAmount] = useState(0);
+	const [amount, setAmount] = useState("");
 	const [selectedValue, setSelectedValue] = useState("");
-	const [message, setMessage] = useState("");
+	const [messageAmount, setMessageAmount] = useState("");
+	const [messageCategory, setMessageCategory] = useState("");
+	//const [isVisible,setIsVisible] = useState(true);
+	const [isError, setIsError] = useState(false);
 
 	const handleSelectedValue = (event) => {
 		setSelectedValue(event.target.value);
@@ -33,22 +36,35 @@ export default function AddTransaction(props) {
 		setAmount(event.target.value);
 	};
 
+	/* const handleVisibleContainer = () => {
+		setIsVisible(false);
+	} */
+
 	const handleSubmitTransaction = (selectedValue, desc, amount) => {
-		
-		if(selectedValue === "") {
+		let isAnySymbol = CheckAnySymbolsInNumber(amount);
+
+		if (selectedValue === "") {
 			//alert("please select category!")
-			setMessage("Please select category!");
+			setMessageCategory("Please select category!");
+			setIsError(true);
+		} else if (isAnySymbol) {
+			setMessageAmount("Whole number only!");
+			setIsError(true);
+		} else if (Number(amount) === 0) {
+			setMessageAmount("Insert amount!");
+			setIsError(true);
 		} else {
 			dispatch(searchBudget(selectedValue));
 			console.log(isCurrentAmountNull);
 
-			if(isCurrentAmountNull) {
+			if (isCurrentAmountNull) {
 				//alert('insert budget first!')
-				setMessage("Insert budget first!");
-			
+				setMessageAmount("Insert budget first!");
+				setIsError(true);
 			} else {
 				if (amount === 0) {
-				setMessage("Insert amount!");
+					setMessageAmount("Insert amount!");
+					setIsError(true);
 				} else {
 					const payloadTrans = {
 						Category: selectedValue,
@@ -64,38 +80,18 @@ export default function AddTransaction(props) {
 					dispatch(minusBudget(payloadBudget));
 					dispatch(totalTransactions());
 					setDesc("");
-					setAmount(0);
+					setAmount("");
 					setSelectedValue("");
-					setMessage("");
+					messageAmount !== "" && setMessageAmount("");
+					messageCategory !== "" && setMessageCategory("");
+					isError === true && setIsError(false);
 				}
-
 			}
-
 		}
-		
-
-		
-		
 	};
 
 	return (
 		<>
-			{/* todo: to add validation */}
-			<span className="float-right pr-2 pt-2">
-				<button className="cursor-pointer">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 24 24"
-						fill="currentColor"
-						className="size-7">
-						<path
-							fillRule="evenodd"
-							d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z"
-							clipRule="evenodd"
-						/>
-					</svg>
-				</button>
-			</span>
 			<div className="p-4 grid grid-cols-3 gap-3">
 				<div className="">
 					<p className="">Category</p>
@@ -104,28 +100,37 @@ export default function AddTransaction(props) {
 						selectedValue={selectedValue}
 						name="Categories"
 						handleSelectOnChange={handleSelectedValue}
+						isError={isError}
 					/>
+					{messageCategory !== "" && (
+						<ValidationMessage text={messageCategory} />
+					)}
 				</div>
 				<div className="">
-					<p className="">Desc</p>
-					<TextInput type="text" value={desc} label="Insert description"
-					 handleOnChange={handleDesc} />
+					<p className="">Description</p>
+					<TextInput
+						type="text"
+						value={desc}
+						label="Insert description"
+						handleOnChange={handleDesc}
+					/>
 				</div>
 				<div className="">
 					<p className="">Amount</p>
 					<TextInput
-						type="number"
+						type="text"
+						label="Amount"
 						value={amount}
 						handleOnChange={handleAmount}
+						isError={isError}
 					/>
-					{message !== "" && <ValidationMessage text={message} />}
+					{messageAmount !== "" && <ValidationMessage text={messageAmount} />}
 				</div>
-				
 			</div>
-			<div className="pl-8 pr-12 pb-4 w-full flex justify-end-safe">
+			<div className="pl-8 pr-4 md:pr-12 pb-4 w-full flex justify-end-safe">
 				<ButtonDef
 					typeBtn="primary"
-					text="+ Transaction"
+					text="Add Transaction"
 					handleAction={() =>
 						handleSubmitTransaction(selectedValue, desc, amount)
 					}
