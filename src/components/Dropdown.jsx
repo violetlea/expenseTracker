@@ -17,8 +17,8 @@ export default function DropdownDef (props) {
 
                 <option value="">Select category</option>
             {
-                dropdownList.map((list) => (
-                    <option value={list}>{list}</option>
+                dropdownList.map((list,index) => (
+                    <option value={list} key={index}>{list}</option>
                 ))
             }
             </select>

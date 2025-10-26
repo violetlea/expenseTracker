@@ -18,11 +18,12 @@ export default function Budgets() {
 					</div>
 				</div>
 				<div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-					{loadBudgets.map((budget) => (
+					{loadBudgets.map((budget,index) => (
 						<AddBudget
 							categoryLabel={budget.Category}
 							remainFunds={budget.RemainingFunds}
 							budgetAmount={budget.Amount}
+							key={index}
 						/>
 					))}
 				</div>

@@ -8,7 +8,7 @@ export default function TextInput (props) {
         onChange={handleOnChange}
         value={value}
         //mt-1 mb-1 border-1 border-gray-400 
-        class= {` w-full rounded-md bg-white p-0.5 mb-1 
+        className= {` w-full rounded-md bg-white p-0.5 mb-1 
                 ${
 					isError === true && `border-1 border-red-800`
 				}`}
