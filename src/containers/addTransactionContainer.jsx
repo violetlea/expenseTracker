@@ -14,7 +14,7 @@ import { isCurrentAmountNull } from "../features/budgets/budgetsSlice";
 import { CheckAnySymbolsInNumber } from "../helpers/helperFunction";
 export default function AddTransaction(props) {
 	const loadCategory = useSelector(allCategories);
-	const dispatch = useDispatch();
+	const dispatch = useDispatch(); 
 
 	const [desc, setDesc] = useState("");
 	const [amount, setAmount] = useState("");
