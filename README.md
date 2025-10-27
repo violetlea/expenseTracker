@@ -21,4 +21,4 @@ Plan feature (not yet developed) :
 2. connect to backend with JAVA,AWS for cloud database
 
 
-link of live app: [text](https://expensetrackerwebapps.netlify.app/)
+link of live app: [link](https://expensetrackerwebapps.netlify.app/)
