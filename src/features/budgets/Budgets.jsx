@@ -13,8 +13,8 @@ export default function Budgets() {
 			<div>
 				<div className="grid grid-cols-1 p-2">
 					<div className="flex justify-between">
-						<p className="text-white">Budgets</p>
-						<p className="text-white float-right">Total : {ConvertToDecimal(totalBudget) }</p>
+						<p className="text-[#4F3E5E] font-bold">Budgets</p>
+						<p className="text-[#4F3E5E] font-bold float-right">Total : {ConvertToDecimal(totalBudget) }</p>
 					</div>
 				</div>
 				<div className="grid grid-cols-1 gap-3 md:grid-cols-2">

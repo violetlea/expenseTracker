@@ -8,9 +8,9 @@ export default function DropdownDef (props) {
             value={selectedValue} 
             onChange={handleSelectOnChange} 
             className= {
-                `rounded-md bg-white w-full p-1
+                `rounded-md bg-[#EDEDE8] w-full p-1 foucs:outline-2 focus:outline-[#4F3E5E]
                 ${
-					isError === true && `border-1 border-red-800`
+					isError === true && `border-2 border-red-800`
 				}`
             }
             >

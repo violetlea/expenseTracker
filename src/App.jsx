@@ -49,7 +49,7 @@ function App() {
 		<>
 			<header className="grid grid-cols-1">
 				<div className="p-6 m-4 text-center ">
-					<h1 className="text-[#BADFDB] font-bold text-shadow-md text-2xl">
+					<h1 className="textDefault font-bold  text-2xl">
 						Expense Tracker
 					</h1>
 				</div>
@@ -91,11 +91,11 @@ function App() {
 				</div>
 			</section>
 			{/*  */}
-			<section className="fixed left-0 z-50 bg-[#EEEEEE] bottom-0 w-full ">
+			<section className="fixed left-0 z-50 bg-[#C09BD8] border-2 border-t-[#4F3E5E] bottom-0 w-full ">
 				<AddTransaction />
 			</section>
 			<footer className="flex justify-center p-4  h-48">
-				<p className="text-white">Created by violet</p>
+				<p className="textDefault">Created by violet</p>
 			</footer>
 		</>
 	);

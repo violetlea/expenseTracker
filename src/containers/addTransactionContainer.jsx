@@ -94,7 +94,7 @@ export default function AddTransaction(props) {
 		<>
 			<div className="p-4 grid grid-cols-3 gap-3">
 				<div className="">
-					<p className="">Category</p>
+					<p className="textDefault font-bold">Category</p>
 					<DropdownDef
 						dropdownList={loadCategory}
 						selectedValue={selectedValue}
@@ -107,7 +107,7 @@ export default function AddTransaction(props) {
 					)}
 				</div>
 				<div className="">
-					<p className="">Description</p>
+					<p className="textDefault font-bold">Description</p>
 					<TextInput
 						type="text"
 						value={desc}
@@ -116,10 +116,10 @@ export default function AddTransaction(props) {
 					/>
 				</div>
 				<div className="">
-					<p className="">Amount</p>
+					<p className="textDefault font-bold">Amount</p>
 					<TextInput
 						type="text"
-						label="Amount"
+						label="Insert Amount"
 						value={amount}
 						handleOnChange={handleAmount}
 						isError={isError}

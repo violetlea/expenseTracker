@@ -12,8 +12,8 @@ export default function Transactions() {
 			<div className="w-full">
 				<div className="grid grid-cols-1 p-2 ">
 					<div className="flex justify-between">
-						<p className="text-white">Transactions</p>
-						<p className="text-white float-right">
+						<p className="textDefault font-bold">Transactions</p>
+						<p className="textDefault font-bold float-right">
 							Total : {ConvertToDecimal(totalTrans)}{" "}
 						</p>
 					</div>
@@ -21,7 +21,7 @@ export default function Transactions() {
 
 				{totalTrans === 0 ? (
 					<div className="p-2">
-						<p className="text-center italic text-white">
+						<p className="text-center italic textDefault">
 							No transactions added yet... update your budget and add now!
 						</p>
 					</div>

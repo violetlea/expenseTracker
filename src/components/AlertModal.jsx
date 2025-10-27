@@ -17,7 +17,7 @@ export default function AlertModal(props) {
 				<DialogBackdrop className="fixed inset-0 bg-black/30" />
 				<div className="fixed inset-0 flex w-screen items-center justify-center p-4">
 					{/* space-y-4 */}
-					<DialogPanel className="max-w-xl h-auto space-y-4 rounded-xl border bg-white p-4 ">
+					<DialogPanel className="max-w-xl h-auto space-y-4 rounded-xl border-2 border-[#4F3E5E] bg-[#EBC3DB] p-4 ">
 						{ isCloseVisible && <div>
 							<span className="float-right p-0">
 								<button className="cursor-pointer" onClick={onClose}>
@@ -36,13 +36,13 @@ export default function AlertModal(props) {
 							</span>
 						</div>}
 						<div className="p-4">
-							<DialogTitle className="font-bold mb-2">
+							<DialogTitle className="textDefault font-bold mb-2">
 								Confirm Clear All?
 							</DialogTitle>
 							{/* <Description>
                                     This will permanently deactivate your account
                                 </Description> */}
-							<p>Are you sure you want to clear all the inserted data? Everything will be 
+							<p className="textDefault">Are you sure you want to clear all the inserted data? Everything will be 
                                 cleared including categories, budgets and transactions you have added.</p>
                             <div className="flex p-4 float-right">
                                 {/* add style on buttons */}

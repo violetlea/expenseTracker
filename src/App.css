@@ -9,15 +9,19 @@
 }
 
 .buttonDef {
-  @apply rounded-xl text-white  pt-1 pb-1 pr-4 pl-4 text-sm ml-2 cursor-pointer
+  @apply rounded-xl font-bold border-2 border-[#4F3E5E] text-[#4F3E5E]  pt-1 pb-1 pr-4 pl-4 text-sm ml-2 cursor-pointer
 }
 
 .primaryBtn {
-  @apply  bg-[#1089FF]
+  @apply  bg-[#FFE0F3]
 }
 
 .secondaryBtn {
-  @apply bg-gray-700
+  @apply bg-none
+}
+
+.textDefault {
+  @apply text-[#4F3E5E]
 }
 
 /*#root {

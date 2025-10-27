@@ -72,15 +72,15 @@ export default function AddBudget(props) {
 
 	return (
 		<>
-			<div className="bg-[#E5E5E5] shadow-xl/20 border-2 border-[#BADFDB] rounded-lg p-2 w-full">
+			<div className="bg-[#EBC3DB] border-2 border-[#4F3E5E] rounded-xl p-2 w-full">
 				<div className="grid grid-cols-3 gap-2">
 					<div className="col-span-2">
 						<p className="text-xs text-gray-500">Category</p>
-						<p className="text-md">{categoryLabel}</p>
-						<p className="text-xs ">Budget: {ConvertToDecimal(budgetAmount)}</p>
-						<p className="text-xs">Funds Remaining: </p>
+						<p className="text-md textDefault font-semibold">{categoryLabel}</p>
+						<p className="text-xs textDefault ">Budget: {ConvertToDecimal(budgetAmount)}</p>
+						<p className="text-xs textDefault">Funds Remaining: </p>
 						<p
-							className={`text-lg te ${
+							className={`text-lg textDefault font-bold ${
 								remainFunds < 0 ? `text-red-800` : `text-black`
 							}`}>
 							{ConvertToDecimal(remainFunds)}
@@ -99,7 +99,7 @@ export default function AddBudget(props) {
 						</div>
 						{message !== "" && <ValidationMessage text={message} />}
 
-						<div className="flex justify-end">
+						<div className="flex justify-end mt-1">
 							<ButtonDef
 								text="Update"
 								handleAction={() =>

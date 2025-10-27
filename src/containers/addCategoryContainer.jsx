@@ -38,7 +38,7 @@ export default function AddCategory(props) {
 
 	return (
 		<>
-			<p>Category</p>
+			<p className="textDefault font-bold">Category</p>
 			<div>
 				<TextInput
 					label="Insert Category"
@@ -48,7 +48,7 @@ export default function AddCategory(props) {
 					isError={isError}
 				/>
 				{message !== "" &&<ValidationMessage text={message} />}
-				<div className="flex justify-end">
+				<div className="flex justify-end mt-1">
 					<ButtonDef text="Add" typeBtn='primary' handleAction={handleSubmit} />
 				</div>
 				
