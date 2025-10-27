@@ -13,19 +13,17 @@ import { CheckAnySymbolsInNumber } from "../helpers/helperFunction";
 export default function AddBudget(props) {
 	const { categoryLabel, remainFunds, budgetAmount } = props;
 
-	const [amount, setAmount] = useState(""); //input type changed to text
+	const [amount, setAmount] = useState("");
 	const [message, setMessage] = useState("");
 	const [isError, setIsError] = useState(false);
 	const dispatch = useDispatch();
 	const loadTransactions = useSelector(allTransactions);
-	
 
 	const handleAmount = (event) => {
 		setAmount(event.target.value);
 	};
 
 	const handleUpdateAmount = (categoryLabel, amount, remainFunds) => {
-
 		let isAnySymbol = CheckAnySymbolsInNumber(amount);
 		console.log(isAnySymbol);
 
@@ -45,7 +43,6 @@ export default function AddBudget(props) {
 				selectedCategory.map(
 					(transaction) => (total += Number(transaction.Amount))
 				);
-				//console.log(total)
 				const payloadUpdateFund = {
 					Category: categoryLabel,
 					Amount: ConvertToDecimal(amount),
@@ -77,7 +74,9 @@ export default function AddBudget(props) {
 					<div className="col-span-2">
 						<p className="text-xs text-gray-500">Category</p>
 						<p className="text-md textDefault font-semibold">{categoryLabel}</p>
-						<p className="text-xs textDefault ">Budget: {ConvertToDecimal(budgetAmount)}</p>
+						<p className="text-xs textDefault ">
+							Budget: {ConvertToDecimal(budgetAmount)}
+						</p>
 						<p className="text-xs textDefault">Funds Remaining: </p>
 						<p
 							className={`text-lg textDefault font-bold ${
@@ -87,7 +86,6 @@ export default function AddBudget(props) {
 						</p>
 					</div>
 					<div className="pt-3 pb-2">
-						{/* to add red line to input if error */}
 						<div className="flex justify-end">
 							<TextInput
 								label="Amount"

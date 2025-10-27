@@ -12,16 +12,16 @@ import ValidationMessage from "../components/ValidationMessage";
 import { searchBudget } from "../features/budgets/budgetsSlice";
 import { isCurrentAmountNull } from "../features/budgets/budgetsSlice";
 import { CheckAnySymbolsInNumber } from "../helpers/helperFunction";
-export default function AddTransaction(props) {
+
+export default function AddTransaction() {
 	const loadCategory = useSelector(allCategories);
-	const dispatch = useDispatch(); 
+	const dispatch = useDispatch();
 
 	const [desc, setDesc] = useState("");
 	const [amount, setAmount] = useState("");
 	const [selectedValue, setSelectedValue] = useState("");
 	const [messageAmount, setMessageAmount] = useState("");
 	const [messageCategory, setMessageCategory] = useState("");
-	//const [isVisible,setIsVisible] = useState(true);
 	const [isError, setIsError] = useState(false);
 
 	const handleSelectedValue = (event) => {
@@ -44,7 +44,6 @@ export default function AddTransaction(props) {
 		let isAnySymbol = CheckAnySymbolsInNumber(amount);
 
 		if (selectedValue === "") {
-			//alert("please select category!")
 			setMessageCategory("Please select category!");
 			setIsError(true);
 		} else if (isAnySymbol) {
@@ -58,7 +57,6 @@ export default function AddTransaction(props) {
 			console.log(isCurrentAmountNull);
 
 			if (isCurrentAmountNull) {
-				//alert('insert budget first!')
 				setMessageAmount("Insert budget first!");
 				setIsError(true);
 			} else {

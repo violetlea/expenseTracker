@@ -18,7 +18,7 @@ export default function CategoriesModal(props) {
 				<DialogBackdrop className="fixed inset-0 bg-black/30" />
 				<div className="fixed inset-0 flex w-screen items-center justify-center p-4">
 					{/* space-y-4 */}
-					<DialogPanel className="max-w-xl h-auto space-y-4 rounded-xl border-2 border-[#4F3E5E] bg-[#EBC3DB] p-4 ">
+					<DialogPanel className="max-w-xl h-auto space-y-4 rounded-xl border-2 border-[#4F3E5E] bg-[#EBC3DB] p-4  ">
 						<div>
 							<span className="float-right p-0">
 								<button className="cursor-pointer" onClick={onClose}>
@@ -41,14 +41,13 @@ export default function CategoriesModal(props) {
 								Manage Category
 							</DialogTitle>
 							{/* <Description>
-                            This will permanently deactivate your account
                         </Description> */}
 							<div className="justify-items-center rounded-xl">
 								<div className=" grid grid-cols-1 md:grid-cols-3 gap-2">
 									<div className="col-span-2">
 										<Categories />
 									</div>
-									<div className="">
+									<div className="pb-2">
 										<AddCategory />
 									</div>
 								</div>

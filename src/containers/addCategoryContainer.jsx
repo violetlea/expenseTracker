@@ -9,8 +9,8 @@ import ValidationMessage from "../components/ValidationMessage";
 export default function AddCategory(props) {
 	const [textCategory, setTextCategory] = useState("");
 	const [message, setMessage] = useState("");
-	const [isError,setIsError] = useState(false);
-	
+	const [isError, setIsError] = useState(false);
+
 	const dispatch = useDispatch();
 
 	const handleTextOnChange = (event) => {
@@ -19,22 +19,18 @@ export default function AddCategory(props) {
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
-		if(textCategory === ""){
+		if (textCategory === "") {
 			setMessage("Insert category!");
 			setIsError(true);
 		} else {
 			dispatch(addCategory(textCategory));
 			dispatch(addBudget(textCategory));
-			message !== "" &&  setMessage("");
+			message !== "" && setMessage("");
 		}
 
-		//add another dispatch addBudget
 		setTextCategory("");
 		isError === true && setIsError(false);
-		//alert("yes");
 	};
-
-	
 
 	return (
 		<>
@@ -47,11 +43,10 @@ export default function AddCategory(props) {
 					handleOnChange={handleTextOnChange}
 					isError={isError}
 				/>
-				{message !== "" &&<ValidationMessage text={message} />}
+				{message !== "" && <ValidationMessage text={message} />}
 				<div className="flex justify-end mt-1">
-					<ButtonDef text="Add" typeBtn='primary' handleAction={handleSubmit} />
+					<ButtonDef text="Add" typeBtn="primary" handleAction={handleSubmit} />
 				</div>
-				
 			</div>
 		</>
 	);

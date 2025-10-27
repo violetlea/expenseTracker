@@ -1,10 +1,9 @@
-export default function ValidationMessage (props) {
+export default function ValidationMessage(props) {
+	const { text } = props;
 
-    const {text} = props;
-    
-    return (
-        <>
-            <p className="text-xs text-red-600">{text}</p>
-        </>
-    )
+	return (
+		<>
+			<p className="text-xs text-red-600">{text}</p>
+		</>
+	);
 }

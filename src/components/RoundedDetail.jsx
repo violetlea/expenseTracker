@@ -10,7 +10,6 @@ export default function RoundedDetail(props) {
 					</p>
 				</div>
 				<div className="flex items-center justify-end">
-					{/* add pointer css to button */}
 					<button
 						key={index}
 						className="text-right font-bold cursor-pointer"

@@ -8,7 +8,7 @@ const transactionsSlice = createSlice({
     initialState: initialState,
     reducers: {
         addTransaction: (state,action) => {
-            //alert(action.payload.Category)
+        
             state.push(action.payload);
         },
         removeTransaction: (state,action) => {
@@ -23,10 +23,11 @@ const transactionsSlice = createSlice({
             return state.filter((transaction) => transaction.Category !== action.payload); 
         },
         totalTransactions: (state,action) => {
+            //auto calculate total evertime a function is dispatch
             let currentTotal = 0;
             state.map((transaction) => currentTotal += Number(transaction.Amount));
             totalTrans = currentTotal;
-            //alert(totalTrans);  
+             
         }
        
     }

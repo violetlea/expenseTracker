@@ -1,4 +1,4 @@
-import { createSlice  } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = ["Housing", "Food", "Transportation", "Utilities"];
 
@@ -7,26 +7,25 @@ const categorySlice = createSlice({
 	initialState: initialState,
 	reducers: {
 		addCategory: (state, action) => {
-			const value = action.payload.charAt(0).toUpperCase()+ action.payload.slice(1);
+			const value =
+				action.payload.charAt(0).toUpperCase() + action.payload.slice(1);
 			state.push(value);
-			
 		},
 		removeCategory: (state, action) => {
 			//alert(action.payload)
-			return state.filter((category,index) => index !== action.payload)
+			return state.filter((category, index) => index !== action.payload);
 		},
-		clearAllAddedCategories: (state,action) => {
-			if(state.length > 3){
+		clearAllAddedCategories: (state, action) => {
+			//when user clicked Clear All button
+			//the default categories will not be removed
+			if (state.length > 3) {
 				state.splice(4);
 			}
-			
-		}
+		},
 	},
 });
 
-
 export const allCategories = (state) => state.categories;
-export const { addCategory, removeCategory, clearAllAddedCategories} =
+export const { addCategory, removeCategory, clearAllAddedCategories } =
 	categorySlice.actions;
 export default categorySlice.reducer;
-

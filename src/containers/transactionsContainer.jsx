@@ -13,8 +13,8 @@ export default function ManageTransaction() {
 
 	const handleRemoveItem = (index, transaction) => {
 		const payload = {
-			Index : index,
-			isClearAll : false
+			Index: index,
+			isClearAll: false,
 		};
 		dispatch(removeTransaction(payload));
 		const payloadForRemoval = {
@@ -22,7 +22,7 @@ export default function ManageTransaction() {
 			Amount: ConvertToDecimal(transaction.Amount),
 			isRemoval: true,
 		};
-        dispatch(totalTransactions());
+		dispatch(totalTransactions());
 		dispatch(editBudget(payloadForRemoval));
 	};
 

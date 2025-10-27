@@ -8,7 +8,6 @@ import { totalTransactions } from "../features/transactions/transactionsSlice";
 
 export default function ManageCategoryList(props) {
 	const { allCategories } = props;
-	// const [listCat,setListCat] = useState(allCategories);
 	const dispatch = useDispatch();
 
 	const handleRemoveSelectedItem = (index, category) => {
@@ -21,10 +20,6 @@ export default function ManageCategoryList(props) {
 		dispatch(removeAllRelatedCategory(category));
 		dispatch(totalBudgets());
 		dispatch(totalTransactions());
-
-		//dispatch(totalBudgets());
-		// setListCat(allCategories)
-		//alert(category)
 	};
 	return (
 		<>

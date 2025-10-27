@@ -17,7 +17,6 @@ export function CheckAnySymbolsInNumber(num) {
      if(result !== null ) {
         resultBoolean =true;
      } 
-     console.log(result)
 
 	return resultBoolean;
 }

@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { allTransactions } from "./transactionsSlice";
-import RoundedDetail from "../../components/RoundedDetail";
 import ManageTransaction from "../../containers/transactionsContainer";
 import { totalTrans } from "./transactionsSlice";
 import { ConvertToDecimal } from "../../helpers/helperFunction";

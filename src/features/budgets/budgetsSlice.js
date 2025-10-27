@@ -31,6 +31,7 @@ const budgetsSlice = createSlice({
 	initialState: initialState,
 	reducers: {
 		addBudget: (state, action) => {
+			//when user add new category, this reducer will be dispatched
 			const category = action.payload;
 
 			const payload = {
@@ -38,13 +39,10 @@ const budgetsSlice = createSlice({
 				Amount: 0,
 				RemainingFunds: 0,
 			};
-			//alert(payload['Category'])
-			state.push(payload);
 
-			//alert(action.payload)
+			state.push(payload);
 		},
 		editBudget: (state, action) => {
-			//alert(action.payload.Category);
 			const selectCategory = state.find(
 				(category) => category.Category === action.payload.Category
 			);
@@ -55,8 +53,6 @@ const budgetsSlice = createSlice({
 					Number(action.payload.Amount);
 				selectCategory["RemainingFunds"] = updatedFunds;
 			} else {
-				//alert(typeof selectCategory["Amount"]);
-
 				if (selectCategory["Amount"] !== 0) {
 					const newBudget = action.payload.Amount;
 					const totalTrans = action.payload.TotalTransaction;
@@ -76,27 +72,22 @@ const budgetsSlice = createSlice({
 				(category) => category.Category === action.payload.Category
 			);
 			const remainingFunds =
-			searchCategory["RemainingFunds"] - action.payload.Amount;
+				searchCategory["RemainingFunds"] - action.payload.Amount;
 			searchCategory["RemainingFunds"] = remainingFunds;
 		},
 		removeBudget: (state, action) => {
-
-			if(action.payload.isClearAll) {
-				if(state.length > 3) {
+			if (action.payload.isClearAll) {
+				if (state.length > 3) {
 					state.splice(4);
 				}
-
 			} else {
 				return state.filter((budget, index) => index !== action.payload.Index);
 			}
-			
 		},
 		totalBudgets: (state, action) => {
 			let currentTotal = 0;
 			state.map((budget) => (currentTotal += Number(budget.Amount)));
 			totalBudget = currentTotal;
-
-			//todo: to adjust total budget when transction/category is removed
 		},
 		clearBudget: (state, action) => {
 			state.map((budget) => {
@@ -104,20 +95,22 @@ const budgetsSlice = createSlice({
 				budget["RemainingFunds"] = 0;
 			});
 		},
-		searchBudget: (state,action) => {
+		searchBudget: (state, action) => {
+			/* checking if the budget already inserted or not when user try to add new
+			transaction */
 			const insertedCategory = action.payload;
-			const findCategory = state.find((budget) => budget.Category === insertedCategory);
+			const findCategory = state.find(
+				(budget) => budget.Category === insertedCategory
+			);
 			const currentAmount = findCategory.Amount;
 
-			if(currentAmount === 0 ) {
-				isCurrentAmountNull = true
-			} 
-		}
+			if (currentAmount === 0) {
+				isCurrentAmountNull = true;
+			}
+		},
 	},
 });
-//console.log(initialState);
 
-//export let total = (state) => state.budgets.map((budget) => total += Number(budget.Amount));
 export const allBudgets = (state) => state.budgets;
 export const {
 	addBudget,
@@ -126,6 +119,6 @@ export const {
 	removeBudget,
 	totalBudgets,
 	clearBudget,
-	searchBudget
+	searchBudget,
 } = budgetsSlice.actions;
 export default budgetsSlice.reducer;

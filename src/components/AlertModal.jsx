@@ -40,12 +40,11 @@ export default function AlertModal(props) {
 								Confirm Clear All?
 							</DialogTitle>
 							{/* <Description>
-                                    This will permanently deactivate your account
+                                    
                                 </Description> */}
 							<p className="textDefault">Are you sure you want to clear all the inserted data? Everything will be 
                                 cleared including categories, budgets and transactions you have added.</p>
                             <div className="flex p-4 float-right">
-                                {/* add style on buttons */}
 								<ButtonDef 
 								typeBtn='secondary' 
 								handleAction={onClose} 
