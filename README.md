@@ -19,3 +19,6 @@ The main feature(finished developed) are:
 Plan feature (not yet developed) :
 1. Extract data to pdf/send data to email (in planning)
 2. connect to backend with JAVA,AWS for cloud database
+
+
+link of live app: [text](https://expensetrackerwebapps.netlify.app/)
