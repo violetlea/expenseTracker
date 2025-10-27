@@ -1,16 +1,21 @@
-# React + Vite
+Expense Tracker App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+For someone who always try to budget her monthly expenses, I realized that it's quite annoying that I have to write up on notes of my budgets and use a calculator to calculate the total of my monthly expenses. So I decided to create this app to make me easier to calculate my total expenses accurately. This is just a frontend project only and can be scalable to backend where user can have more than 1 expenses and compare their expenses. This app can be an everyday expense tracker app, and user can check their daily expenses.
 
-Currently, two official plugins are available:
+Tech stack:
+1. React + VITE
+2. Redux Toolkit
+3. Tailwind CSS
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The main feature(finished developed) are: 
+1. Manage Category (add new category, remove added category)
+  -if you remove the selected category and the budget and transaction will also be removed if there's a data
+3. Add Budget
+4. Add Transaction
+5. Clear All
+6. Mobile responsive
+   
+Plan feature (not yet developed) :
+1. Extract data to pdf/send data to email (in planning)
+2. connect to backend with JAVA,AWS for cloud database
